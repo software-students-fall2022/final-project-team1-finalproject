@@ -1,0 +1,40 @@
+h1 {
+    font-size: 64px;
+    font-weight: 800;
+}
+
+.left_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/Scrabble.jpg");
+    background-color: #222222;
+    background-size: cover;
+}
+
+.app_detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 4rem 3rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 0.01px solid white;
+    
+}
+
+.app_detail > h1 {
+    margin-bottom: 20px;
+}
+
+.app_detail > p {
+    /* text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black; */
+    text-shadow: black 0px 0px 20px;
+}
+
+.right_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}

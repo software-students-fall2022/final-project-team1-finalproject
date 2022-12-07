@@ -7,7 +7,7 @@ def configure_routes():
     app = Flask(__name__)
     @app.route('/')
     def home():
-        return "test"
+        return render_template("home.html")
 
     @app.route('/keyword' , methods=['GET'])
     def generate():

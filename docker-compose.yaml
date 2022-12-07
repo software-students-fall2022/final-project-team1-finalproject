@@ -1,0 +1,10 @@
+services:
+  web:
+    build: ./web-app
+    ports:
+      - "3000:5000"
+  
+  scraper:
+    build: ./web-scraper
+    ports:
+      - "3001:5000"

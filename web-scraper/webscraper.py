@@ -191,8 +191,9 @@ class WebScrapeProcedures:
                     break
 
         print("Number of unique words:", len(word_freq.keys()))
+        print("Some examples:", list(word_freq.keys())[:10])
         print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
         print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
         return word_freq
 
-# WebScrapeProcedures.procedure_1("animal")
+WebScrapeProcedures.procedure_1("animal")

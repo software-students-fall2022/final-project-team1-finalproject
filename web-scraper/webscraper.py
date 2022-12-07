@@ -106,6 +106,7 @@ class WebScrapeCleaner:
 
 
 class WebScrapeHelper:
+    
     @staticmethod
     def stop_condition(words: dict) -> bool:
         '''If the number of distinct words and the frequency of the most common word 
@@ -151,7 +152,7 @@ class WebScrapeHelper:
         # refactor any words that are not good (i.e., likely to be an invalid word)
         # print("Refactoring words")
         words = WebScrapeCleaner.refactor_weird_words(words)
-        
+
         # Generate the word freq dictionary and return it
         # print("Generating word freq dict for", len(words), "words")
         return WebScrapeHelper.generate_word_freq_dict(words)
@@ -194,4 +195,4 @@ class WebScrapeProcedures:
         print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
         print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
 
-WebScrapeProcedures.procedure_1("Walkie talkie")
+# WebScrapeProcedures.procedure_1("animal")

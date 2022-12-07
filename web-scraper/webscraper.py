@@ -93,7 +93,6 @@ class WebScrapeCleaner:
             return False
         return True
 
-
     @staticmethod
     def refactor_weird_words(words: list[str]) -> list[str]:
         '''Given an array of words, returns a new array of only words that are valid
@@ -168,7 +167,7 @@ class WebScrapeHelper:
                 dict1[word] += dict2[word]
         return dict1
 
-class WebScrapeProcedures:    
+class WebScrapeProcedures:
 
     @staticmethod
     def procedure_1(user_input):

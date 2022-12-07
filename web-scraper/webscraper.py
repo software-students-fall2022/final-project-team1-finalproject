@@ -79,9 +79,9 @@ class WebScrapeCleaner:
         # " ".join([s for s in re.split("([A-Z][^A-Z]*)", string) if s])
         return s
 
-    # Note: Might want to add the stop words into this method to remove them.
+    # TODO: Might want to add the stop words into this method to remove them.
     @staticmethod
-    def include_word(word):
+    def include_word(word: str) -> bool:
         '''Determines whether the word should be included in the frequency list.
         True for yes, False for no.
         '''
@@ -89,7 +89,7 @@ class WebScrapeCleaner:
             return False
         elif len(word) < 4:
             return False
-        elif not word.isalpha():
+        elif not word.isalnum():
             return False
         return True
 
@@ -106,7 +106,7 @@ class WebScrapeCleaner:
 
 
 class WebScrapeHelper:
-    
+
     @staticmethod
     def stop_condition(words: dict) -> bool:
         '''If the number of distinct words and the frequency of the most common word 
@@ -194,5 +194,6 @@ class WebScrapeProcedures:
         print("Number of unique words:", len(word_freq.keys()))
         print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
         print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        return word_freq
 
 # WebScrapeProcedures.procedure_1("animal")

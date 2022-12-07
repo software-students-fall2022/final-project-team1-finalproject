@@ -1,21 +1,24 @@
 from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
-
 import os
+import requests
 
 def configure_routes():
     # set up a web app with correct routes
     app = Flask(__name__)
-    @app.route('/', methods=['GET'])
+    @app.route('/')
     def home():
-        return "scrapper"
-    @app.route('/scrape', methods=['GET'])
-    def scrapeWeb():
+        return "test"
+
+    @app.route('/keyword' , methods=['GET'])
+    def generate():
+        
         args = request.args
         word = args.get('word')
-        # scrape the web, get the result and store them to db then return success if success
+        payload = {'word':word}
+        # send request to the web scraper, add the keyword as the query string
+        message = requests.get('http://scraper:5000/scrape', params=payload)
+        return message.text
 
-        # temp placeholder for testing
-        return "1" + word
     return app
 
 app = configure_routes()

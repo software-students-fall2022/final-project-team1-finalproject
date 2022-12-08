@@ -1,6 +1,14 @@
 from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
 import os
 import requests
+import pymongo
+
+load_dotenv()  # take environment variables from .env.
+
+# turn on debugging if in development mode
+if os.getenv('FLASK_ENV', 'development') == 'development':
+    # turn on debugging, if in development
+    app.debug = True # debug mnode
 
 def configure_routes():
     # set up a web app with correct routes

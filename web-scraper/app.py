@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
 
 import os
+import pymongo
 
 def configure_routes():
     # set up a web app with correct routes

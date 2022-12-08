@@ -1,40 +1,83 @@
-h1 {
-    font-size: 64px;
-    font-weight: 800;
-}
+/**
+    home.html styles
+*/
 
+/* Details */
 .left_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../images/Scrabble.jpg");
-    background-color: #222222;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(29, 25, 25, 0.903)), url("../images/Scrabble.jpg");
+    background-color: var(--color-background);
     background-size: cover;
 }
 
 .app_detail {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-
-    padding: 4rem 3rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 0.01px solid white;
-    
 }
 
 .app_detail > h1 {
+    font-size: var(--large-1);
+    font-weight: 800;
     margin-bottom: 20px;
 }
 
 .app_detail > p {
-    /* text-shadow: 0.07em 0 black, 0 0.07em black, -0.07em 0 black, 0 -0.07em black; */
-    text-shadow: black 0px 0px 20px;
+    font-size: var(--medium-1);
 }
 
+.search_form {
+    display:flex;
+    cursor:pointer;
+    height: 55px;
+    padding: 10px 20px;
+    background: #ffffff;
+    border-radius: 40px;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.search_form > input {
+    width: 0;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    background: transparent;
+    font-size: var(--small-1);
+}
+
+.search_form:hover > input {
+    width: 400px;
+    padding: 5px;
+}
+
+.search_form > button {
+    background: transparent;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.search_form > button > i {
+    color: black;
+    font-size: var(--medium-2);
+    font-weight: 800;
+}
+
+
+/* Featured word clouds */
 .right_container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+}
+
+.right_container > h2 {
+    font-size: var(--large-2);
 }

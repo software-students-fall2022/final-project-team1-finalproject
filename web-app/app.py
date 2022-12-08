@@ -3,16 +3,22 @@ from flask import Flask, render_template, request, redirect, abort, url_for, mak
 from dotenv import load_dotenv
 import requests
 import pymongo
-
+from io import BytesIO
+from gridfs import GridFS
+from PIL import ImageFile
+import base64
+import codecs
 load_dotenv()  # take environment variables from .env.
+import certifi
 
 # connect to the database
 database = None
-cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
+cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000,tlsCAFile=certifi.where())
 try:
     # verify the connection works by pinging the database
     cxn.admin.command('ping') # The ping command is cheap and does not require auth.
     database = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the database
+    fs = GridFS(database)
     print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
 except Exception as e:
     # the ping command failed, so the connection is not available.
@@ -33,8 +39,19 @@ def configure_routes(db):
         word = args.get('word')
         payload = {'word':word}
         # send request to the web scraper, add the keyword as the query string
-        message = requests.get('http://scraper:5000/scrape', params=payload)
-        return message.text
+        #temporarly commented this code out
+        #message = requests.get('http://scraper:5000/scrape', params=payload)
+
+        #aleoalzabal code
+        company = db.inputs.find_one({"name":"meta"})
+
+        image_id= company["image_id"]
+        image= fs.get(image_id)
+
+        base64_data = codecs.encode(image.read(), 'base64')
+        image = base64_data.decode('utf-8')
+
+        return render_template("home.html",image = image)
 
     return app
 

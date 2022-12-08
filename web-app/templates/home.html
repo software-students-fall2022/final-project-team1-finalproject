@@ -2,20 +2,25 @@
 
 {% block container %}
 
-<section class="left_container">
+<section class="left_container" id="left">
+    <div class="bg" id="bg"></div>
     <div class="app_detail">
         <h1 class="app_title">Word Scraper</h1>
-        <form action="/keyword" method="GET">
-            <input type="text" placeholder="search" name="word"/>
-            <button type="Submit">Submit</button>
+        <form class="search_form" method="GET" action="/keyword" id="search_form">
+            <input type="text" placeholder="Search" name="word"/>
+            <button type="Submit" class="search_submit">
+                <i class="bi bi-search"></i>
+            </button>
         </form>
         <p>Search something to generate a word cloud!</p>
     </div>
 </section>
 
 <section class="right_container">
-    <h2>Featured word clouds</h2>
-
+    <h2 class="feature_title">Featured word clouds</h2>
+    <img src="data:image/png;base64, {{image}}">
 </section>
+
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
 
 {% endblock %}

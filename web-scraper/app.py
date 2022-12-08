@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
+import webscraper as webscraper
 from dotenv import load_dotenv
 from io import BytesIO
 from gridfs import GridFS
@@ -12,6 +13,7 @@ import pymongo
 import certifi
 
 load_dotenv()  # take environment variables from .env.
+
 
 # connect to the database
 database = None
@@ -39,6 +41,7 @@ def configure_routes(db):
         word = args.get('word')
         # scrape the web, get the result and store them to db then return success if success
 
+
         # temp placeholder for testing
         return "1" + word
     @app.route('/wordcloud', methods=['GET'])
@@ -55,6 +58,8 @@ def configure_routes(db):
         image_id = fs.put(image_data)
         db.inputs.insert_one({"name":"meta","text":text,"image_id": image_id})
         return "success"
+
+        
     return app
 app = configure_routes(db = database)
 

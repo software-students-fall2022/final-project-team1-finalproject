@@ -39,9 +39,8 @@ def configure_routes(db):
         word = args.get('word')
         payload = {'word':word}
         # send request to the web scraper, add the keyword as the query string
-        #temporarly commented this code out
-        #message = requests.get('http://scraper:5000/scrape', params=payload)
 
+  
         #aleoalzabal code
         company = db.inputs.find_one({"name":"meta"})
 
@@ -52,6 +51,9 @@ def configure_routes(db):
         image = base64_data.decode('utf-8')
 
         return render_template("home.html",image = image)
+        #message = requests.get('http://scraper:5000/scrape', params=payload) 
+        #return message.text
+
 
     return app
 

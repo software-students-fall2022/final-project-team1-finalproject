@@ -196,4 +196,4 @@ class WebScrapeProcedures:
         print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
         return word_freq
 
-WebScrapeProcedures.procedure_1("animal")
+# WebScrapeProcedures.procedure_1("facebook")

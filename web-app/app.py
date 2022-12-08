@@ -45,7 +45,5 @@ if os.getenv('FLASK_ENV', 'development') == 'development':
     # turn on debugging, if in development
     app.debug = True # debug mnode
 
-# connect to the database
-
 if __name__ == "__main__":
     app.run(debug=True)

@@ -93,7 +93,6 @@ class WebScrapeCleaner:
             return False
         return True
 
-
     @staticmethod
     def refactor_weird_words(words: list[str]) -> list[str]:
         '''Given an array of words, returns a new array of only words that are valid
@@ -168,7 +167,7 @@ class WebScrapeHelper:
                 dict1[word] += dict2[word]
         return dict1
 
-class WebScrapeProcedures:    
+class WebScrapeProcedures:
 
     @staticmethod
     def procedure_1(user_input):
@@ -192,8 +191,9 @@ class WebScrapeProcedures:
                     break
 
         print("Number of unique words:", len(word_freq.keys()))
+        print("Some examples:", list(word_freq.keys())[:10])
         print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
         print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
         return word_freq
 
-# WebScrapeProcedures.procedure_1("animal")
+# WebScrapeProcedures.procedure_1("facebook")

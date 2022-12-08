@@ -1,16 +1,11 @@
-from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
 import os
+from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
+from dotenv import load_dotenv
 import pymongo
 
 load_dotenv()  # take environment variables from .env.
 
-# turn on debugging if in development mode
-if os.getenv('FLASK_ENV', 'development') == 'development':
-    # turn on debugging, if in development
-    app.debug = True # debug mnode
-
 # connect to the database
-
 database = None
 cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
 try:
@@ -40,6 +35,13 @@ def configure_routes(db):
     return app
 
 app = configure_routes(db = database)
+
+# turn on debugging if in development mode
+if os.getenv('FLASK_ENV', 'development') == 'development':
+    # turn on debugging, if in development
+    app.debug = True # debug mnode
+
+# connect to the database
 
 if __name__ == "__main__":
     app.run(debug=True)

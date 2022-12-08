@@ -2,11 +2,12 @@
 
 {% block container %}
 
-<section class="left_container">
+<section class="left_container" id="left">
+    <div class="bg" id="bg"></div>
     <div class="app_detail">
         <h1 class="app_title">Word Scraper</h1>
         <form class="search_form" method="POST" action="" >
-            <input type="text" placeholder="Search" name="search"/>
+            <input type="text" placeholder="Search" name="search" id="search"/>
             <button type="Submit" class="search_submit">
                 <i class="bi bi-search"></i>
             </button>
@@ -19,5 +20,7 @@
     <h2 class="feature_title">Featured word clouds</h2>
 
 </section>
+
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
 
 {% endblock %}

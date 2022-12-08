@@ -1,9 +1,11 @@
 import os
 from flask import Flask, render_template, request, redirect, abort, url_for, make_response, flash
+import webscraper as webscraper
 from dotenv import load_dotenv
 import pymongo
 
 load_dotenv()  # take environment variables from .env.
+
 
 # connect to the database
 database = None
@@ -29,9 +31,11 @@ def configure_routes(db):
         args = request.args
         word = args.get('word')
         # scrape the web, get the result and store them to db then return success if success
-
-        # temp placeholder for testing
-        return "1" + word
+        result = webscraper.WebScrapeProcedures.procedure_1(word)
+        
+        allWords = ",".join(list(result.keys()))
+        # allWords = allWords[0:10000]
+        return allWords
     return app
 
 app = configure_routes(db = database)

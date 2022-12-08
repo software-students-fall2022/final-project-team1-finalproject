@@ -1,3 +1,8 @@
 Flask==2.1.1
 pymongo==4.3.3
 python-dotenv==0.16.0
+numpy == 1.23.5
+pillow ==  9.3.0
+wordcloud == 1.8.2.2
+beautifulsoup4 == 4.11.1
+certifi == 2022.9.24

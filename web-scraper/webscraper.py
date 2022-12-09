@@ -100,7 +100,7 @@ class WebScrapeCleaner:
         refactored = []
         for word in words:
             if WebScrapeCleaner.include_word(word):
-                refactored.append(word)
+                refactored.append(word.title())
         return refactored
 
 
@@ -148,7 +148,7 @@ class WebScrapeHelper:
         # print("Spliting by whitespace")
         words = word_string.split()
 
-        # refactor any words that are not good (i.e., likely to be an invalid word)
+        # refactor the words that are not good (e.g., likely to be an invalid word, weird capitalizations, etc.)
         # print("Refactoring words")
         words = WebScrapeCleaner.refactor_weird_words(words)
 

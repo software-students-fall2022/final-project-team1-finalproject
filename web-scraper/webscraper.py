@@ -99,7 +99,7 @@ class WebScrapeCleaner:
         '''
         refactored = []
         for word in words:
-            if WebScrapeCleaner.include_word(word):
+            if WebScrapeCleaner.include_word(word.lower()):
                 refactored.append(word.title())
         return refactored
 

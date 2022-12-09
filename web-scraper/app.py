@@ -4,11 +4,12 @@ import webscraper as webscraper
 from dotenv import load_dotenv
 import pymongo
 from gridfs import GridFS
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS
 from PIL import ImageFile
 from numpy import asarray
 from io import BytesIO
 import math
+import random
 
 load_dotenv()  # take environment variables from .env.
 
@@ -43,7 +44,8 @@ def generate_store_wordcloud(db,id):
     found = db.inputs.find_one({"_id": id})
     text = found["text"]
     # print(text)
-    wordcloud = WordCloud(background_color="white", max_words=100,random_state=42,collocations=False).generate(text)
+    randomNum = math.floor(random.random()*100)
+    wordcloud = WordCloud(stopwords=STOPWORDS, background_color="white", max_words=100, random_state=randomNum,collocations=False).generate(text)
     image_stream = BytesIO()
     wordcloud.to_image().save(image_stream,format="PNG")
     image_stream.seek(0)

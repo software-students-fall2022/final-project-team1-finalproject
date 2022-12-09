@@ -7,7 +7,7 @@ def configure_routes():
     app = Flask(__name__)
     @app.route('/')
     def home():
-        return "test"
+        return render_template("home.html")
 
     @app.route('/keyword' , methods=['GET'])
     def generate():
@@ -17,6 +17,7 @@ def configure_routes():
         payload = {'word':word}
         # send request to the web scraper, add the keyword as the query string
         message = requests.get('http://scraper:5000/scrape', params=payload)
+        
         return message.text
 
     return app

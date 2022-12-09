@@ -4,10 +4,12 @@ import webscraper as webscraper
 from dotenv import load_dotenv
 import pymongo
 from gridfs import GridFS
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS
 from PIL import ImageFile
 from numpy import asarray
 from io import BytesIO
+import math
+import random
 
 load_dotenv()  # take environment variables from .env.
 
@@ -41,7 +43,9 @@ def store_text(db,word,text):
 def generate_store_wordcloud(db,id):
     found = db.inputs.find_one({"_id": id})
     text = found["text"]
-    wordcloud = WordCloud().generate(text)
+    # print(text)
+    randomNum = math.floor(random.random()*100)
+    wordcloud = WordCloud(stopwords=STOPWORDS, background_color="white", max_words=100, random_state=randomNum,collocations=False).generate(text)
     image_stream = BytesIO()
     wordcloud.to_image().save(image_stream,format="PNG")
     image_stream.seek(0)
@@ -50,6 +54,19 @@ def generate_store_wordcloud(db,id):
     filter = {"_id": id}
     new_values = {"$set":{"image_id":image_id}}
     db.inputs.update_one(filter,new_values)
+
+def dictionary_convert(dict):
+    longStr = ""
+    for key in dict:
+        i = 0
+        freq = dict[key]
+        while i < freq:
+            longStr = longStr + key + " "
+            i = i + 1
+    
+    return longStr
+
+
 
 def configure_routes(db):
     # set up a web app with correct routes
@@ -64,7 +81,9 @@ def configure_routes(db):
         # scrape the web, get the result and store them to db then return success if success
         result = webscraper.WebScrapeProcedures.procedure_1(word)
         
-        allWords = ",".join(list(result.keys()))
+        # allWords = ",".join(list(result.keys()))
+
+        allWords = dictionary_convert(result)
         # allWords = allWords[0:10000]
         #stores text to db, if it is a new word itll insert the text, if it is a word
         #that is previously in the db itll concatinate the text

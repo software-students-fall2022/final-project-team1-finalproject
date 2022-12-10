@@ -17,10 +17,34 @@
 </section>
 
 <section class="right_container">
-    <h2 class="feature_title">Featured word clouds</h2>
-    <img src="data:image/png;base64, {{image}}">
+    <div class="app_featured">
+        <h2 class="feature_title">Featured word clouds</h2>
+        
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- <div class="swiper-slide cloud-img">
+                    <img src="data:image/png;base64, {{image}}" alt="image">
+                </div> -->
+                <div class="swiper-slide cloud-img">   
+                    <img src="{{url_for('static', filename='images/wordcloud1.jpg') }}" alt="example">
+                </div>
+                <div class="swiper-slide cloud-img">
+                    <img src="{{ url_for('static', filename='images/wordcloud2.jpg') }}" alt="example">
+                </div>
+            </div>
+        
+            <!-- pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="{{url_for('static', filename='js/home.js')}}"></script>
+<script src="{{url_for('static', filename='js/swiper.js')}}"></script>
 
 {% endblock %}

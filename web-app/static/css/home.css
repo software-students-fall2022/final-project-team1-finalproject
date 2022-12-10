@@ -93,12 +93,35 @@
 
 
 /* Featured word clouds */
+
+
 .right_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 2rem; */
+    overflow: hidden;
+}
+
+.app_featured {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    /* border: 1px solid white; */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Swiper  */
+.swiper-container {
+    width: 80%;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
 }
 
 .right_container > h2 {

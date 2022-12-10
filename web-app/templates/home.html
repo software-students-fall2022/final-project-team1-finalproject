@@ -4,7 +4,7 @@
 
 <section class="left_container" id="left">
     <div class="bg" id="bg"></div>
-    <div class="app_detail">
+    <div class="app_detail" id="app_detail">
         <h1 class="app_title">Word Scraper</h1>
         <form class="search_form" method="GET" action="/keyword" id="search_form">
             <input type="text" placeholder="Search" name="word"/>
@@ -16,12 +16,12 @@
     </div>
 </section>
 
-<section class="right_container">
+<section class="right_container" id="right">
     <div class="app_featured">
-        <h2 class="feature_title">Featured word clouds</h2>
+        <h2 class="feature_title" id="feature_title">Featured word clouds</h2>
         
         <div class="swiper-container">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" id="featured_images">
                 <!-- <div class="swiper-slide cloud-img">
                     <img src="data:image/png;base64, {{image}}" alt="image">
                 </div> -->
@@ -37,8 +37,8 @@
             <div class="swiper-pagination"></div>
 
             <!-- navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <!-- <div class="swiper-button-prev"></div> -->
+            <!-- <div class="swiper-button-next"></div> -->
         </div>
     </div>
 </section>

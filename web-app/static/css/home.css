@@ -7,9 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(29, 25, 25, 0.903)), url("../images/Scrabble.jpg");
-    background-color: var(--color-background);
-    background-size: cover; */
     transition: 0.5s; 
     overflow: hidden;
 }
@@ -108,7 +105,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid white; */
     gap: 20px;
     width: 100%;
 }

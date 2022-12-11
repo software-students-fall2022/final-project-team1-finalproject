@@ -7,10 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(29, 25, 25, 0.903)), url("../images/Scrabble.jpg");
-    background-color: var(--color-background);
-    background-size: cover;
-    transition: 0.5s; */
+    transition: 0.5s; 
     overflow: hidden;
 }
 
@@ -22,7 +19,7 @@
     /* position: fixed; */
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(23, 23, 23, 0.903)), url("../images/Scrabble.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(23, 23, 23, 0.903)), url("../images/left-bg.jpg");
     background-color: var(--color-background);
     background-size: cover;
     transition: all 0.5s ease;
@@ -37,6 +34,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    transition: 0.5s;
 }
 
 .app_detail > h1 {
@@ -74,8 +72,6 @@
     padding: 5px;
 }
 
-/* .search_form:hover >  */
-
 .search_form > button {
     background: transparent;
     cursor: pointer;
@@ -95,12 +91,45 @@
 /* Featured word clouds */
 .right_container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 2rem; */
+    overflow: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.519), rgba(23, 23, 23, 0.903)), url("../images/right-bg.jpg");
+    background-color: var(--color-background);
+    background-size: cover;
+}
+
+.app_featured {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    gap: 20px;
+    width: 100%;
 }
 
-.right_container > h2 {
+.feature_title {
     font-size: var(--large-2);
+    transition: 0.5s;
 }
+
+/* Swiper  */
+.swiper-container {
+    width: 80%;
+}
+
+.swiper-slide {
+    width: auto;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    transition: 0.5s;
+}
+
+/* .swiper-slide img:hover {
+    transform: scale(1.1);
+} */

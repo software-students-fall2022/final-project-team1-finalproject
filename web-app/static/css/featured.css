@@ -1,0 +1,43 @@
+/* 
+    featured.html styles
+*/
+.featured_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid white; */
+}
+
+.featured{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.featured > h1 {
+    font-size: var(--large-2);
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* Swiper  */
+.swiper-container {
+    width: 50%;
+}
+
+.swiper-slide {
+    width: auto;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    transition: 0.5s;
+}
+
+/* .swiper-slide img:hover {
+    transform: scale(1.1);
+} */

@@ -25,18 +25,17 @@ body {
     --color-text: #ffffff;
 
     /* font sizes */
-    --large-1: 76px;
-    --large-2: 40px;
+    --large-1: 62px;
+    --large-2: 50px;
     --medium-1: 24px;
     --medium-2: 22px;
     --small-1: 16px;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.app {
     width: 100vw;
     height: 100vh;
     background-color: var(--color-background);
     color: var(--color-text);
+    /* border: 2px solid green; */
 }

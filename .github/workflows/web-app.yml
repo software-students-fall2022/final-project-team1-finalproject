@@ -1,4 +1,4 @@
-name: web scraper workflow
+name: web app workflow
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        working-directory: ./web-scraper
+        working-directory: ./web-app
     timeout-minutes: 6
     strategy:
       matrix:

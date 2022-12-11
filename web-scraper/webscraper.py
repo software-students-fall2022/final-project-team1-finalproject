@@ -3,7 +3,9 @@ from bs4 import BeautifulSoup
 from urllib import request
 import requests
 from requests.exceptions import ReadTimeout
-# import re
+from wordcloud import WordCloud, STOPWORDS
+import re
+import numpy as np
 from googlesearch import search
 
 class WebScrape:
@@ -70,26 +72,20 @@ class WebScrapeCleaner:
     def clean_string(string: str) -> str:
         '''Cleans up the string by separating the words based on capitalization.
         '''
+        return re.sub(r"\B([A-Z]+)", r" \1", string) 
 
-        s = " "
-        for c in string:
-            if c.isupper() and not s[-1].isupper():
-                s += ' '
-            s += c
-        # " ".join([s for s in re.split("([A-Z][^A-Z]*)", string) if s])
-        return s
-
-    # TODO: Might want to add the stop words into this method to remove them.
     @staticmethod
     def include_word(word: str) -> bool:
-        '''Determines whether the word should be included in the frequency list.
+        '''Determines whether the word should be included as a result.
         True for yes, False for no.
         '''
         if len(word) > 30:
             return False
-        elif len(word) < 4:
+        elif len(word) < 3:
             return False
         elif not word.isalnum():
+            return False
+        elif word in STOPWORDS:
             return False
         return True
 
@@ -99,8 +95,8 @@ class WebScrapeCleaner:
         '''
         refactored = []
         for word in words:
-            if WebScrapeCleaner.include_word(word):
-                refactored.append(word)
+            if WebScrapeCleaner.include_word(word.lower()):
+                refactored.append(word.title())
         return refactored
 
 
@@ -111,7 +107,7 @@ class WebScrapeHelper:
         '''If the number of distinct words and the frequency of the most common word 
         is above a certain threshold, returns True. Otherwise, false is returned.
         '''
-        if len(words.keys()) > 30 and max(words.values()) > 200:
+        if len(words.keys()) > 2000 or max(words.values()) > 200:
             return True
         return False
     
@@ -148,7 +144,7 @@ class WebScrapeHelper:
         # print("Spliting by whitespace")
         words = word_string.split()
 
-        # refactor any words that are not good (i.e., likely to be an invalid word)
+        # refactor the words that are not good (e.g., likely to be an invalid word, weird capitalizations, etc.)
         # print("Refactoring words")
         words = WebScrapeCleaner.refactor_weird_words(words)
 
@@ -166,22 +162,50 @@ class WebScrapeHelper:
             else:
                 dict1[word] += dict2[word]
         return dict1
+    
+    @staticmethod
+    def fetch_data(url: str):
+        '''Given the url, performs a fetch of the data. Prints statements if errors appear.
+        '''
+        try:
+            req = WebScrape.get_requests(url)
+            print("Status: ", req.status_code)
+            return req
+        except ReadTimeout as t:
+            print("Timed out:", t)
+            return None
+        except Exception as e:
+            print("Unknown exception:", e)
+            return None
+    
+    @staticmethod
+    def print_word_freq_dict_details(word_freq: dict[str, int]) -> None:
+        '''Given the word frequency dictionary, makes a printout of the details of the dictionary.
+        '''
+        print("Number of unique words:", len(word_freq.keys()))
+        print("Some examples:", list(word_freq.keys())[:10])
+        print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
+        print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
 
 class WebScrapeProcedures:
 
     @staticmethod
-    def procedure_1(user_input):
+    def procedure_1(user_input: str) -> dict[str, int]:
+        '''This procedure performs web scrapingbased on a user_input, generally expecting
+        the same results to be returned for each run.
+
+        A dictionary with the word as the keys and frequency as the values is returned.
+        '''
+
         word_freq = {}
         url_generator = WebScrape.get_google_search_results(user_input)
         for url in url_generator:
+            print()
             print("Current url: ", url)
-            try:
-                req = WebScrape.get_requests(url)
-            except ReadTimeout as t:
-                print("Timed out:", t)
+            req = WebScrapeHelper.fetch_data(url)
+            if (req == None):
                 continue
-            print("Status: ", req.status_code)
-            if (req.status_code != 200):
+            elif (req.status_code != 200):
                 print("Error in request. Status code:", req.status_code)
                 continue
             else:
@@ -189,11 +213,39 @@ class WebScrapeProcedures:
                 WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
                 if (WebScrapeHelper.stop_condition(word_freq)):
                     break
+        
+        WebScrapeHelper.print_word_freq_dict_details(word_freq)
+        return word_freq
+    
+    @staticmethod
+    def procedure_2(user_input: str) -> dict[str, int]:
+        '''This procedure performs web scraping, but potential variations on the resulting dictionary returned.
+        
+        A dictionary with the word as the keys and frequency as the values is returned.
+        '''
 
-        print("Number of unique words:", len(word_freq.keys()))
-        print("Some examples:", list(word_freq.keys())[:10])
-        print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
-        print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        word_freq = {}
+        url_generator = WebScrape.get_google_search_results(user_input)
+        for url in url_generator:
+            print()
+            print("Current url: ", url)
+            if (np.random.randint(0, 100) <= 30):
+                print("Skipping due to probability")
+                continue
+            
+            req = WebScrapeHelper.fetch_data(url)
+            
+            if (req == None):
+                continue
+            elif (req.status_code != 200):
+                print("Skipped due to status code")
+                continue
+            else:
+                new_word_freq = WebScrapeHelper.make_word_freq_dict(req.text)
+                WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
+                if (WebScrapeHelper.stop_condition(word_freq)):
+                    break
+        WebScrapeHelper.print_word_freq_dict_details(word_freq)
         return word_freq
 
-# WebScrapeProcedures.procedure_1("facebook")
+# WebScrapeProcedures.procedure_2("facebook")

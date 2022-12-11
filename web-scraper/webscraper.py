@@ -164,7 +164,7 @@ class WebScrapeHelper:
         return dict1
     
     @staticmethod
-    def fetch_data(url):
+    def fetch_data(url: str):
         '''Given the url, performs a fetch of the data. Prints statements if errors appear.
         '''
         try:
@@ -179,7 +179,7 @@ class WebScrapeHelper:
             return None
     
     @staticmethod
-    def word_freq_dict_details(word_freq):
+    def print_word_freq_dict_details(word_freq: dict[str, int]) -> None:
         '''Given the word frequency dictionary, makes a printout of the details of the dictionary.
         '''
         print("Number of unique words:", len(word_freq.keys()))
@@ -213,6 +213,8 @@ class WebScrapeProcedures:
                 WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
                 if (WebScrapeHelper.stop_condition(word_freq)):
                     break
+        
+        WebScrapeHelper.print_word_freq_dict_details(word_freq)
         return word_freq
     
     @staticmethod
@@ -243,6 +245,7 @@ class WebScrapeProcedures:
                 WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
                 if (WebScrapeHelper.stop_condition(word_freq)):
                     break
+        WebScrapeHelper.print_word_freq_dict_details(word_freq)
         return word_freq
 
 # WebScrapeProcedures.procedure_2("facebook")

@@ -33,9 +33,10 @@ class TestWebScraper:
     
     def test_get_data(self):
         req = request.Request("https://example.com", headers=WS.headers)
-        expected = request.urlopen(req).read()
+        expected = open('./tests/data/example.txt', 'r').read()
         actual = WS.get_data(req)
         assert len(expected) == len(actual), "Expected both requests to be fetching the same data"
-        assert str(expected)[:100] == str(actual)[:100], "Expected both requests to be fetching the same data"
+        assert str(expected) == actual.decode(), "Expected both requests to be fetching the same data"
 
-
+    def test_get_requests(self):
+        pass

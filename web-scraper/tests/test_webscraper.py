@@ -1,5 +1,4 @@
 import pytest
-import webscraper
 from webscraper import WebScrape as WS
 from webscraper import WebScrapeCleaner as WSC
 from webscraper import WebScrapeHelper as WSH

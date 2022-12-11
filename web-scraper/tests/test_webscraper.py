@@ -49,5 +49,13 @@ class TestWebScraper:
     def test_make_soup(self):
         html = open('./tests/data/example.txt', 'r').read()
         soup = WS.make_soup(html)
-        assert isinstance(soup, BeautifulSoup), "Expected a beautifulsoup to be returned"
-        
+        assert isinstance(soup, BeautifulSoup), "Expected a beautifulsoup to be created"
+    
+class TestWebScrapeCleaner:
+    pass
+
+class TestWebScrapeHelper:
+    pass
+
+class TestWebScrapeProcedures:
+    pass

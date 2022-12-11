@@ -1,3 +1,9 @@
+/**
+    Global styles
+    Global variables
+    base.html styles
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 
 * {
@@ -11,11 +17,26 @@ body {
     font-family: 'Playfair Display SC', 'serif';
 }
 
+:root {
+    /* colors */
+    --color-background: #222222;
+    --color-detail-bg: #000000b3;
+    --color-detail-border: #3a3a3a;
+    --color-text: #ffffff;
+
+    /* font sizes */
+    --large-1: 76px;
+    --large-2: 40px;
+    --medium-1: 24px;
+    --medium-2: 22px;
+    --small-1: 16px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100vw;
     height: 100vh;
-    background-color: #222222;
-    color: #fff;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }

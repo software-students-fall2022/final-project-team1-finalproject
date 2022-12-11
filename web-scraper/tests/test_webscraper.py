@@ -32,7 +32,7 @@ class TestWebScraper:
         assert isinstance(actual, request.Request), "Expected a request to be created"
     
     def test_get_data(self):
-        req = request.Request("https://www.google.com/search?q=Hello", headers=WS.headers)
+        req = request.Request("https://example.com", headers=WS.headers)
         expected = request.urlopen(req).read()
         actual = WS.get_data(req)
         assert len(expected) == len(actual), "Expected both requests to be fetching the same data"

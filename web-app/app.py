@@ -50,6 +50,29 @@ def configure_routes(db):
         image = base64_data.decode('utf-8')
 
         return render_template("home.html",image = image)
+    
+    @app.route('/featured')
+    def featured():
+        found = db.inputs.aggregate([{"$sample" : {"size": 5}}])
+        image_ids = []
+        for image in found:
+            image_ids.append(image["image_id"])
+        
+        fs_images = []
+        for id in image_ids:
+            fs_images.append(fs.get(id))
+        
+        images =[]
+        for image in fs_images:
+            base64_data = codecs.encode(image.read(), 'base64')
+            image = base64_data.decode('utf-8')
+            images.append(image)
+            
+        return render_template("featured.html", images=images)
+    
+    @app.route('/history')
+    def history():
+        return render_template("history.html")
     return app
 
 app = configure_routes(db = database)

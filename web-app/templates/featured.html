@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<section class="featured_container">
+    <div class="featured">
+        <h1 class="featured_title">Featured Word Clouds</h1>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="featured_images">
+                {% for image in images %}
+                <div class="swiper-slide cloud-img">   
+                    <img src="data:image/png;base64, {{image}}" alt="image">
+                </div>
+                {% endfor %}
+            </div>
+        
+            <!-- pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="{{url_for('static', filename='js/swiper.js')}}"></script>
+
+{% endblock %}

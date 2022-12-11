@@ -2,51 +2,38 @@
 
 {% block container %}
 
-<section class="left_container" id="left">
-    <div class="bg" id="bg"></div>
-    <div class="app_detail" id="app_detail">
-        <h1 class="app_title">Word Scraper</h1>
-        <form class="search_form" method="GET" action="/keyword" id="search_form">
-            <input type="text" placeholder="Search" name="word"/>
-            <button type="Submit" class="search_submit">
-                <i class="bi bi-search"></i>
-            </button>
-        </form>
-        <p>Search something to generate a word cloud!</p>
-    </div>
-</section>
-
-<section class="right_container" id="right">
-    <div class="app_featured">
-        <h2 class="feature_title" id="feature_title">Featured word clouds</h2>
-        
-        <div class="swiper-container">
-            <div class="swiper-wrapper" id="featured_images">
-                <div class="swiper-slide cloud-img">
-                    <img src="data:image/png;base64, {{image}}" alt="image">
-                </div>
-                <!-- Above represents data from the DB -->
-                <!-- Below are static image examples -->
-                <div class="swiper-slide cloud-img">   
-                    <img src="{{url_for('static', filename='images/wordcloud1.jpg') }}" alt="example">
-                </div>
-                <div class="swiper-slide cloud-img">
-                    <img src="{{ url_for('static', filename='images/wordcloud2.jpg') }}" alt="example">
-                </div>
+<section class="container">
+    <section class="left_container" id="left">
+        <div class="bg" id="bg"></div>
+        <div class="app_detail" id="app_detail">
+            <h1 class="app_title">Word Scraper</h1>
+            <form class="search_form" method="GET" action="/keyword" id="search_form">
+                <input type="text" placeholder="Search" name="word" />
+                <button type="Submit" class="search_submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            <p>Search something to generate a word cloud!</p>
+            <div class="navigation">
+                <a class="nav_featured" href="{{url_for('featured')}}">View Featured</a>
+                <a class="nav_history" href="{{url_for('history')}}">View History</a>
             </div>
-        
-            <!-- pagination -->
-            <div class="swiper-pagination"></div>
-
-            <!-- navigation buttons -->
-            <!-- <div class="swiper-button-prev"></div> -->
-            <!-- <div class="swiper-button-next"></div> -->
         </div>
-    </div>
+    </section>
+
+    <section class="right_container" id="right">
+        <div class="bg_right" id="bg_right"></div>
+        <div class="app_result">
+            <h2 class="result_title" id="result_title">Result</h2>
+            <div class="result_container cloud-img">
+                <img src="data:image/png;base64, {{image}}" alt="image">
+                <!-- Bottom img for testing -->
+                <!-- <img src="{{url_for('static', filename='images/wordcloud1.jpg') }}" alt="example"> -->
+            </div>
+        </div>
+    </section>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="{{url_for('static', filename='js/home.js')}}"></script>
-<script src="{{url_for('static', filename='js/swiper.js')}}"></script>
 
 {% endblock %}

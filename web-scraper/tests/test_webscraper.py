@@ -5,6 +5,8 @@ from webscraper import WebScrapeHelper as WSH
 from webscraper import WebScrapeProcedures as WSP
 import types
 from urllib import request
+import requests
+from bs4 import BeautifulSoup
 
 class TestWebScraper:
 
@@ -33,9 +35,27 @@ class TestWebScraper:
     
     def test_get_data(self):
         req = request.Request("https://example.com", headers=WS.headers)
-        expected = request.urlopen(req).read()
+        expected = open('./tests/data/example.txt', 'r').read()
         actual = WS.get_data(req)
-        assert len(expected) == len(actual), "Expected both requests to be fetching the same data"
-        assert str(expected)[:100] == str(actual)[:100], "Expected both requests to be fetching the same data"
+        assert len(expected) == len(actual), "Expected the length of the data fetched to be the same"
+        assert str(expected) == actual.decode(), "Expected the data fetched to be the same"
 
+    def test_get_requests(self):
+        expected = open('./tests/data/example.txt', 'r').read()
+        actual = WS.get_requests("https://example.com")
+        assert actual.status_code == 200, "Expected status code to be 200"
+        assert expected == actual.text, "Expected the content to be the same"
 
+    def test_make_soup(self):
+        html = open('./tests/data/example.txt', 'r').read()
+        soup = WS.make_soup(html)
+        assert isinstance(soup, BeautifulSoup), "Expected a beautifulsoup to be created"
+    
+class TestWebScrapeCleaner:
+    pass
+
+class TestWebScrapeHelper:
+    pass
+
+class TestWebScrapeProcedures:
+    pass

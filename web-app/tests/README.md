@@ -4,7 +4,7 @@
 
 # Get Code Coverage information
 
-* cd to the web-scraper directory. Assuming you are currently at this directory, run the following:
+* cd to the web-app directory. Assuming you are currently at this directory, run the following:
     ```
     cd ../
     ```
@@ -15,7 +15,7 @@
 
 # Alternative way to get coverage information
 
-* Go to GitHub Actions and open the most recent successful run of "web scraper workflow".
+* Go to GitHub Actions and open the most recent successful run of "web app workflow".
 * Click on that job.
 * Look at the details of the job.
 * Click on "execute unit tests" section.

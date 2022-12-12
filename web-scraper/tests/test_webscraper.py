@@ -52,7 +52,33 @@ class TestWebScraper:
         assert isinstance(soup, BeautifulSoup), "Expected a beautifulsoup to be created"
     
 class TestWebScrapeCleaner:
-    pass
+    def test_clean_soup(self):
+        html = open('./tests/data/example.txt', 'r').read()
+        soup = BeautifulSoup(html, WS.parser)
+        soup = WSC.clean_soup(soup)
+
+        expected_empty_text = soup.find_all(['script', 'head', 'style', 'footer'])
+        for element in expected_empty_text:
+            assert element.text == "", "Expected the text for the " + element.name +" element to be removed"
+    
+    def test_clean_string(self):
+        string = "Hello WorldThis is the TextThat will be tested DDL inclusionDLL."
+        actual = WSC.clean_string(string)
+        expected = "Hello World This is the Text That will be tested DDL inclusion DLL."
+        assert expected == actual, "Expected the cleaning of the string to work correctly"
+
+    def test_include_word(self):
+        false_words = ['thiS', 'thIs', 'this', 'is', 'the', 'testing.']
+        true_words = ['hello', 'world', 'CS101', '1232232202', 'interesting', 'fun', 'byte', 'wIll']
+        for word in false_words:
+            assert not WSC.include_word(word), "Expected false to be returned for the word"
+        for word in true_words:
+            assert WSC.include_word(word), "Expected true to be returned for word"
+    
+    def test_refactor_words(self):
+        to_refactor = ['Today', 'is', 'a', 'great', 'day', 'to', 'go', 'outside', 'for', 'hours', 'and', 'have', 'fun.', 'I', 'am', 'taking', 'CS101', 'next', 'semester']
+        expected = ['Today', 'Great', 'Day', 'Outside', 'Hours', 'Fun', 'Taking', 'Cs101', 'Next', 'Semester']
+        assert WSC.refactor_words(to_refactor) == expected, "Expected only valid words to be stored"
 
 class TestWebScrapeHelper:
     pass

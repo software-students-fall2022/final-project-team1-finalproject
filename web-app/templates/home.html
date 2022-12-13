@@ -25,7 +25,11 @@
     <section class="right_container" id="right">
         <div class="bg_right" id="bg_right"></div>
         <div class="app_result">
-            <h2 class="result_title" id="result_title">Result</h2>
+            {% if input %}
+                <h2 class="result_title" id="result_title">{{input}}</h2>
+            {% else %}
+                <h2 class="result_title" id="result_title">Result</h2>
+            {% endif %}
             <div class="result_container cloud-img">
                 {% if image %}
                     <img src="data:image/png;base64, {{image}}" alt="image">

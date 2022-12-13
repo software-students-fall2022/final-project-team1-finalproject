@@ -44,12 +44,13 @@ def configure_routes(db):
         requests.get('http://scraper:5000/scrape', params=payload)
         found = db.inputs.find_one({"word":word})
         image_id= found["image_id"]
+        input = found["word"]
         image= fs.get(image_id)
 
         base64_data = codecs.encode(image.read(), 'base64')
         image = base64_data.decode('utf-8')
 
-        return render_template("home.html",image = image)
+        return render_template("home.html",image = image, input=input)
     
     @app.route('/featured')
     def featured():

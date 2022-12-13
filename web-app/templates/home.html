@@ -16,6 +16,7 @@
             <p>Search something to generate a word cloud!</p>
             <div class="navigation">
                 <a class="nav_featured" href="{{url_for('featured')}}">View Featured</a>
+                <span>=§=</span>
                 <a class="nav_history" href="{{url_for('history')}}">View History</a>
             </div>
         </div>
@@ -26,7 +27,9 @@
         <div class="app_result">
             <h2 class="result_title" id="result_title">Result</h2>
             <div class="result_container cloud-img">
-                <img src="data:image/png;base64, {{image}}" alt="">
+                {% if image %}
+                    <img src="data:image/png;base64, {{image}}" alt="image">
+                {% endif %}
                 <!-- Bottom img for testing -->
                 <!-- <img src="{{url_for('static', filename='images/wordcloud1.jpg') }}" alt="example"> -->
             </div>

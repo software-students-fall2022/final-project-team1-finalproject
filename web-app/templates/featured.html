@@ -9,8 +9,9 @@
         <p>Click through to view</p>
         <div class="swiper-container">
             <div class="swiper-wrapper" id="featured_images">
-                {% for image in images %}
+                {% for input,image in images_inputs %}
                 <div class="swiper-slide cloud-img">   
+                    <span>{{input}}</span>
                     <img src="data:image/png;base64, {{image}}" alt="image">
                 </div>
                 {% endfor %}

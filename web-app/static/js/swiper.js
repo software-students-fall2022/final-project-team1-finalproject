@@ -1,6 +1,6 @@
 const swiper = new Swiper('.swiper-container', {
   init: true,
-  effect: "cards",
+  effect: "coverflow",
   grabCursor: true,
   // loop: true,
   preloadImages: true,

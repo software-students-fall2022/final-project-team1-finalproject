@@ -63,6 +63,15 @@ hr:after {
 
 .swiper-slide {
     width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide span {
+    font-size: var(--medium-1);
+    color: var(--color-text-dark);
 }
 
 .swiper-slide img {

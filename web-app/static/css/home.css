@@ -106,7 +106,7 @@ a {
 }
 
 .navigation > .nav_featured {
-    color: black;
+    color: var(--color-text-dark);
     font-weight: 600;
     text-decoration: none;
     padding: 1rem 1.5rem;
@@ -125,7 +125,7 @@ a {
     color: inherit;
     text-decoration: none;
     padding: 1rem 1.5rem;
-    background-color: black;
+    background-color: var(--color-text-dark);
     border: 0.5px solid #0f0f0f;
     box-shadow: rgba(18, 18, 18, 0.8) 0px 5px, rgba(18, 18, 18, 0.6) 0px 10px, rgba(18, 18, 18, 0.4) 0px 15px;
     border-radius: 5px;

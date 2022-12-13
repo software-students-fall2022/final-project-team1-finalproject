@@ -26,7 +26,7 @@ searchInput.addEventListener("mouseleave", e => {
 })
 
 leftContainer.addEventListener("mouseover", e => {
-    bg.style.filter = "blur(2px)";
+    // bg.style.filter = "blur(2px)";
     // appDetails.style.transform = "scale(1.1)";
 })
 
@@ -37,7 +37,7 @@ leftContainer.addEventListener("mouseleave", e => {
 
 // Event listeners for elements on right side
 rightContainer.addEventListener("mouseover", e => {
-    bgRight.style.filter = "blur(2px)";
+    // bgRight.style.filter = "blur(2px)";
 })
 
 rightContainer.addEventListener("mouseleave", e => {

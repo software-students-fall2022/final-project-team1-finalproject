@@ -19,10 +19,14 @@ body {
 
 :root {
     /* colors */
-    --color-background: #222222;
+    --color-background: #ededed;
+    /* --color-background: #cecece; */
     --color-detail-bg: #000000b3;
     --color-detail-border: #3a3a3a;
     --color-text: #ffffff;
+    --color-head-color: #444444;
+    --color-p: #393939;
+    --color-text-dark: #000000;
 
     /* font sizes */
     --large-1: 62px;
@@ -35,6 +39,9 @@ body {
 .app {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-background);
     color: var(--color-text);
     /* border: 2px solid green; */

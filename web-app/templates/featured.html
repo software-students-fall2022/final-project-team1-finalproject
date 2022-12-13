@@ -5,13 +5,25 @@
 <section class="featured_container">
     <div class="featured">
         <h1 class="featured_title">Featured Word Clouds</h1>
+        <hr class="divide">
+        <p>Click through to view</p>
         <div class="swiper-container">
             <div class="swiper-wrapper" id="featured_images">
-                {% for image in images %}
+                <!-- {% for image in images %}
                 <div class="swiper-slide cloud-img">   
                     <img src="data:image/png;base64, {{image}}" alt="image">
                 </div>
-                {% endfor %}
+                {% endfor %} -->
+                <!-- Test code below -->
+                <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud1.jpg')}}" alt="image">
+                </div>
+                <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud2.jpg')}}" alt="image">
+                </div>
+                <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud1.jpg')}}" alt="image">
+                </div>
             </div>
         
             <!-- pagination -->

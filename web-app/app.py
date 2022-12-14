@@ -44,19 +44,22 @@ def configure_routes(db):
         requests.get('http://scraper:5000/scrape', params=payload)
         found = db.inputs.find_one({"word":word})
         image_id= found["image_id"]
+        input = found["word"]
         image= fs.get(image_id)
 
         base64_data = codecs.encode(image.read(), 'base64')
         image = base64_data.decode('utf-8')
 
-        return render_template("home.html",image = image)
+        return render_template("home.html",image = image, input=input)
     
     @app.route('/featured')
     def featured():
         found = db.inputs.aggregate([{"$sample" : {"size": 5}}])
         image_ids = []
+        inputs = []
         for image in found:
             image_ids.append(image["image_id"])
+            inputs.append(image["word"])
         
         fs_images = []
         for id in image_ids:
@@ -68,7 +71,9 @@ def configure_routes(db):
             image = base64_data.decode('utf-8')
             images.append(image)
             
-        return render_template("featured.html", images=images)
+        
+            
+        return render_template("featured.html", images_inputs = zip(inputs,images))
     
     @app.route('/history')
     def history():

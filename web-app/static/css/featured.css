@@ -1,12 +1,16 @@
 /* 
     featured.html styles
+    TODO: turn off overflow-x 
 */
 .featured_container {
     height: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid white; */
+    overflow: hidden;
+    color: var(--color-text);
+    background: var(--color-background);
 }
 
 .featured{
@@ -17,27 +21,79 @@
 }
 
 .featured > h1 {
+    color: var(--color-head-color);
     font-size: var(--large-2);
     font-weight: 800;
     margin-bottom: 20px;
+    text-shadow:
+        1px 0px 1px #ccc, 0px 1px 1px #eee,
+        2px 1px 1px #ccc, 1px 2px 1px #eee,
+        3px 2px 1px #ccc, 2px 3px 1px #eee,
+        4px 3px 1px #ccc, 3px 4px 1px #eee;
+}
+
+hr {
+    border: none;
+    width: 20%;
+    border-top: 3px double var(--color-head-color);
+    color: #c1bfbf;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+hr:after {
+    content: '';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
+.featured > p {
+    color: var(--color-p);
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 /* Swiper  */
 .swiper-container {
-    width: 50%;
+    padding: 2rem;
+    width: 55%;
 }
 
 .swiper-slide {
     width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide span {
+    font-size: var(--medium-1);
+    color: var(--color-text-dark);
 }
 
 .swiper-slide img {
     display: block;
+    border: 1px solid black;
     width: 100%;
     object-fit: contain;
     transition: 0.5s;
 }
 
-/* .swiper-slide img:hover {
+.nav_back {
+    margin-top: 20px;
+    color: white;
+    padding: 1rem 1.5rem;
+    transition: 0.25s ease;
+    border-radius: 3px;
+    background: linear-gradient(to right, #434343 0%, black 100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.nav_back:hover {
     transform: scale(1.1);
-} */
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}

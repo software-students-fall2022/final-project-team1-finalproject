@@ -1,9 +1,8 @@
 const swiper = new Swiper('.swiper-container', {
-  // Optional parameters
   init: true,
   effect: "coverflow",
   grabCursor: true,
-  loop: true,
+  // loop: true,
   preloadImages: true,
   // pagination
   pagination: {

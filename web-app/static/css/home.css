@@ -100,6 +100,42 @@
     gap: 20px;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navigation > .nav_featured {
+    color: var(--color-text-dark);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(#e6e3f5, #D9E4F5);
+    box-shadow: rgba(228, 228, 228, 0.4) 0px 5px, rgba(228, 228, 228, 0.2) 0px 10px, rgba(228, 228, 228, 0.1) 0px 15px;
+    transition: 0.25s ease;
+    border-radius: 5px;
+}
+
+.nav_featured:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.navigation > .nav_history {
+    color: inherit;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-text-dark);
+    border: 0.5px solid #0f0f0f;
+    box-shadow: rgba(18, 18, 18, 0.8) 0px 5px, rgba(18, 18, 18, 0.6) 0px 10px, rgba(18, 18, 18, 0.4) 0px 15px;
+    border-radius: 5px;
+    transition: 0.25s ease;
+}
+
+.nav_history:hover {
+    transform: scale(0.9);
+    cursor: pointer;
+}
 
 /* Result word clouds */
 .right_container {

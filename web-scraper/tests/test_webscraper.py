@@ -38,7 +38,7 @@ class TestWebScraper:
         expected = open('./tests/data/example.txt', 'r').read()
         actual = WS.get_data(req)
         assert len(expected) == len(actual), "Expected the length of the data fetched to be the same"
-        assert str(expected) == actual.decode(), "Expected the data fetched to be the same"
+        assert str(expected) == actual, "Expected the data fetched to be the same"
 
     def test_get_requests(self):
         expected = open('./tests/data/example.txt', 'r').read()
@@ -50,7 +50,7 @@ class TestWebScraper:
         html = open('./tests/data/example.txt', 'r').read()
         soup = WS.make_soup(html)
         assert isinstance(soup, BeautifulSoup), "Expected a beautifulsoup to be created"
-    
+
 class TestWebScrapeCleaner:
     def test_clean_soup(self):
         html = open('./tests/data/example.txt', 'r').read()
@@ -65,6 +65,18 @@ class TestWebScrapeCleaner:
         string = "Hello WorldThis is the TextThat will be tested DDL inclusionDLL."
         actual = WSC.clean_string(string)
         expected = "Hello World This is the Text That will be tested DDL inclusion DLL."
+        assert expected == actual, "Expected the cleaning of the string to work correctly"
+        
+    def test_clean_string_1(self):
+        string = ""
+        actual = WSC.clean_string(string)
+        expected = ""
+        assert expected == actual, "Expected the cleaning of the string to work correctly"
+
+    def test_clean_string_2(self):
+        string = "Hello World."
+        actual = WSC.clean_string(string)
+        expected = "Hello World."
         assert expected == actual, "Expected the cleaning of the string to work correctly"
 
     def test_include_word(self):
@@ -81,7 +93,69 @@ class TestWebScrapeCleaner:
         assert WSC.refactor_words(to_refactor) == expected, "Expected only valid words to be stored"
 
 class TestWebScrapeHelper:
-    pass
+    def test_stop_condition(self):
+        false_stops = [{}, {'hello': 300, 'bye': 20, 'hello': 20}, {'hello': 200}]
+        for d in false_stops:
+            assert not WSH.stop_condition(d), "Expected stop condition to not be reached"
+        
+        true_stops = [{str(k): int(v) for k, v in enumerate(range(2001))}]
+        for d in true_stops:
+            assert WSH.stop_condition(d), "Expected stop condition to be reached"
+        
+    def test_generate_word_freq_dict(self):
+        words = ['hello', 'hello', 'today', 'is', 'a', 'great', 'day', 'outside']
+        expected = {'today': 1, 'hello': 2, 'is': 1, 'a':1, 'great': 1, 'day': 1, 'outside': 1}
+        assert WSH.generate_word_freq_dict(words) == expected, "Expected dictionaries generated to have same key value pairs"
+
+    def test_make_word_freq_dict(self):
+        sentences = "Hello This is the best day to do some coding. It is also a great day outside"
+        expected = {'Hello': 1, 'Best': 1, 'Day': 2, 'Coding': 1, 'Great': 1, 'Outside': 1}
+        actual = WSH.make_word_freq_dict(sentences)
+        assert actual == expected, "Expected dictionaries generated to have same key value pairs"
+
+    def test_combine_word_freq_dicts(self):
+        expected = {'Hello': 1, 'Best': 1, 'Day': 2, 'Coding': 1, 'Great': 1, 'Outside': 1}
+        actual = WSH.combine_word_freq_dicts({'Hello': 1, 'Best': 1, 'Day': 1, 'Coding': 1}, {'Great': 1, 'Day': 1, 'Outside': 1})
+        assert actual == expected, "Expected dictionaries to be successfully combined"
+
+    def test_fetch_data(self):
+        url_200 = "https://example.com"
+        res = WSH.fetch_data(url_200)
+        expected = open('./tests/data/example.txt', 'r').read()
+        assert res.status_code == 200, "Expected successful fetch of the url"
+        assert res.text == expected, "Expected the text result to be the same"
+    
+    def test_fetch_data_timeout(self):
+        url = "http://www.google.com:81/"
+        res = WSH.fetch_data(url)
+        assert res == None, "Nothing should be returned for a timeout url"
+
+    def test_fetch_data_invalid(self):
+        url = "invalidurl"
+        res = WSH.fetch_data(url)
+        assert res == None, "Nothing should be returned for an invalid url"
+
+    def test_print_word_freq_dict_details(self):
+        # No exceptions should be thrown 
+        WSH.print_word_freq_dict_details({})
+        WSH.print_word_freq_dict_details({'Hello': 1, 'Best': 1, 'Day': 2, 'Coding': 1, 'Great': 1, 'Outside': 1})
 
 class TestWebScrapeProcedures:
-    pass
+
+    def test_procedure_1(self):
+        user_input = "hello"
+        actual = WSP.procedure_1(user_input)
+        assert isinstance(actual, dict), "Expected dictionary to be returned"
+    
+    def test_procedure_2(self):
+        user_input = "hello"
+        actual = WSP.procedure_2(user_input)
+        assert isinstance(actual, dict), "Expected dictioanry to be returned"
+
+    def test_procedure_1_no_results(self):
+        user_input = "1234567898765678264923874"
+        assert WSP.procedure_1(user_input) == {}, "Expected no results to appear"
+
+    def test_procedure_2_no_results(self):
+        user_input = "1234567898765678264923874"
+        assert WSP.procedure_2(user_input) == {}, "Expected no results to appear"

@@ -185,8 +185,11 @@ class WebScrapeHelper:
         '''
         print("Number of unique words:", len(word_freq.keys()))
         print("Some examples:", list(word_freq.keys())[:10])
-        print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
-        print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        if len(word_freq.keys()) > 0:
+            print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
+            print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        else:
+            print("Word Freq dictionary:", word_freq)
 
 class WebScrapeProcedures:
 
@@ -210,7 +213,11 @@ class WebScrapeProcedures:
                 print("Error in request. Status code:", req.status_code)
                 continue
             else:
-                new_word_freq = WebScrapeHelper.make_word_freq_dict(req.text)
+                try:
+                    new_word_freq = WebScrapeHelper.make_word_freq_dict(req.text)
+                except Exception as e:
+                    print("Failed to create frequency dictionary")
+                    continue
                 WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
                 if (WebScrapeHelper.stop_condition(word_freq)):
                     break
@@ -248,5 +255,3 @@ class WebScrapeProcedures:
                     break
         WebScrapeHelper.print_word_freq_dict_details(word_freq)
         return word_freq
-
-# WebScrapeProcedures.procedure_2("facebook")

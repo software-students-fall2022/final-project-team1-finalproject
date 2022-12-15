@@ -55,6 +55,9 @@ def generate_store_wordcloud(db,word,id):
     db.inputs.update_one(filter,new_values)
     db.history.insert_one({"word":word,"date": datetime.now(),"image_id": image_id})
 
+    # Benji's edit
+    return (wordcloud, randomNum, image_id)
+
 def dictionary_convert(dict):
     longStr = ""
     for key in dict:

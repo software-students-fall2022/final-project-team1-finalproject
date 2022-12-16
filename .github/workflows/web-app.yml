@@ -7,6 +7,9 @@ on:
 jobs:
   webapptest:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: ./web-app
     timeout-minutes: 6
     strategy:
       matrix:
@@ -33,9 +36,6 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./web-app
     steps:
       -
         name: Checkout

@@ -7,6 +7,7 @@ import types
 from urllib import request
 import requests
 from bs4 import BeautifulSoup
+import mongomock
 
 class TestWebScraper:
 

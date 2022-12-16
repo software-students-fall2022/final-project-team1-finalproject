@@ -44,5 +44,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: aleolazabal/final_web_app
           tag_with_sha: true
+          path: ../../web-app
 
 

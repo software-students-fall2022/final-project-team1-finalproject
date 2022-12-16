@@ -50,3 +50,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: aleolazabal/final_web_scraper
           tag_with_sha: true
+          path: ../../web-scraper

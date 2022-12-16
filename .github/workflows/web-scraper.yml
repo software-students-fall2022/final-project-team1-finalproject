@@ -32,4 +32,7 @@ jobs:
           pip install pytest-cov
           pip install pytest-flask
       - name: execute unit tests
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
         run: pytest --cov

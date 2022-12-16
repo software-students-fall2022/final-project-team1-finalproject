@@ -36,5 +36,5 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
         run: |
-        echo MONGO_URI
+        echo ${{ secrets.MONGO_URI }}
         pytest --cov

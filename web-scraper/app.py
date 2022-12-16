@@ -11,23 +11,28 @@ from numpy import asarray
 from io import BytesIO
 import math
 import random
+import mongomock
 
-load_dotenv()  # take environment variables from .env.
 
 
+def make_connection():
 # connect to the database
-database = None
-cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
-try:
-    # verify the connection works by pinging the database
-    cxn.admin.command('ping') # The ping command is cheap and does not require auth.
-    database = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the database
-    fs = GridFS(database)
-    print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
-except Exception as e:
-    # the ping command failed, so the connection is not available.
-    print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
-    print('Database connection error:', e) # debug
+    load_dotenv()  # take environment variables from .env.
+    cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000,tls=True,tlsAllowInvalidCertificates=True)
+    return cxn
+
+def def_db(cxn):
+    try:
+        # verify the connection works by pinging the database
+        cxn.admin.command('ping') # The ping command is cheap and does not require auth.
+        database = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the databasex
+        print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+        return database
+    except Exception as e:
+        # the ping command failed, so the connection is not available.
+        print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
+        print('Database connection error:', e) # debug
+        return -1
 
 def store_text(db,word,text):
     found = db.inputs.find_one({"word":word})
@@ -39,7 +44,7 @@ def store_text(db,word,text):
     else:
         return db.inputs.insert_one({"word":word,"text":text}).inserted_id
 
-def generate_store_wordcloud(db,word,id):
+def generate_store_wordcloud(db,fs,word,id):
     found = db.inputs.find_one({"_id": id})
     text = found["text"]
     # print(text)
@@ -55,6 +60,9 @@ def generate_store_wordcloud(db,word,id):
     db.inputs.update_one(filter,new_values)
     db.history.insert_one({"word":word,"date": datetime.now(),"image_id": image_id})
 
+    # Benji's edit
+    return (wordcloud, randomNum, image_id)
+
 def dictionary_convert(dict):
     longStr = ""
     for key in dict:
@@ -66,11 +74,13 @@ def dictionary_convert(dict):
     
     return longStr
 
-
-
-def configure_routes(db):
+    
+def configure_routes():
     # set up a web app with correct routes
     app = Flask(__name__)
+    cnx = make_connection()
+    db = def_db(cnx)
+    fs = GridFS(db)
     @app.route('/', methods=['GET'])
     def home():
         return "scrapper"
@@ -79,7 +89,10 @@ def configure_routes(db):
         args = request.args
         word = args.get('word')
         # scrape the web, get the result and store them to db then return success if success
+        if not word:
+            return "no word"
         result = webscraper.WebScrapeProcedures.procedure_1(word)
+
         
         # allWords = ",".join(list(result.keys()))
 
@@ -88,14 +101,15 @@ def configure_routes(db):
         #stores text to db, if it is a new word itll insert the text, if it is a word
         #that is previously in the db itll concatinate the text
         stored_id = store_text(db,word,allWords)
-        generate_store_wordcloud(db,word,stored_id)
+        generate_store_wordcloud(db,fs,word,stored_id)
+        
         #return allWords
         #instead of returning the words it will retrieved the id of the stored document
         return allWords
-
     return app
 
-app = configure_routes(db = database)
+app = configure_routes()
+
 
 # turn on debugging if in development mode
 if os.getenv('FLASK_ENV', 'development') == 'development':

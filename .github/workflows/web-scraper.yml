@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 6
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [windows-latest]
         python-version: ['3.9']
 
     steps:

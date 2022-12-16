@@ -5,8 +5,6 @@ import pymongo
 from gridfs import GridFS
 from wordcloud import WordCloud, STOPWORDS
 from flask import Flask, render_template
-import pytest
-import pytest_flask
 import math
 import random
 

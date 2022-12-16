@@ -62,7 +62,7 @@ jobs:
           tags: aleolazabal/final_web_app:latest
   deploy:
     needs: docker
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout files

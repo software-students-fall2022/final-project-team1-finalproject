@@ -39,12 +39,12 @@ jobs:
       - name: execute unit tests
         run: |
           pytest --cov
-          
+
   docker:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./web-app
+        working-directory: ./web-scraper
     steps:
       -
         name: Checkout
@@ -65,6 +65,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./web-scraper
           push: true
-          tags: aleolazabal/final_web_app:latest
+          tags: aleolazabal/final_web_scraper:latest

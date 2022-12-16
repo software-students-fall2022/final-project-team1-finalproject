@@ -31,10 +31,11 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pip install pytest-flask
-      - name: execute unit tests
-        env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          MONGO_DBNAME: ${{ secrets.MONGO_DBNAME }}
+      
+      - name: 'Create env file'
         run: |
-          echo ${{ secrets.MONGO_URI }}
+          echo "${{ secrets.ENV_FILE }}" > .env
+      
+      - name: execute unit tests
+        run: |
           pytest --cov

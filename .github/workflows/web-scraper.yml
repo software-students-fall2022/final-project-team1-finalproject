@@ -80,6 +80,6 @@ jobs:
           token: ${{secrets.DIGITALOCEAN_TOKEN}}
       - 
         name: Provision Droplet and deploy container
-        run: doctl compute droplet create web_scraper --image docker-18-04 --size s-1vcpu-1gb --region nyc1 
+        run: doctl compute droplet create webscraper --image docker-18-04 --size s-1vcpu-1gb --region nyc1 
 
     

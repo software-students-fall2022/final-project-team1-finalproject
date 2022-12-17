@@ -44,11 +44,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    
+
     steps:
       - name: DigitalOcean App Platform deployment
         uses: digitalocean/app_action@main
         with:
           app_name: web
-          token: ${{ DIGITALOCEAN_API_KEY }}
+          token: ${{ secrets.DIGITALOCEAN_API_KEY }}
         

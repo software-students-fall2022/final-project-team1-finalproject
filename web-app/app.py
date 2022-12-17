@@ -42,7 +42,7 @@ def configure_routes():
     @app.route('/keyword' , methods=['GET'])
     def generate():
         
-        requestURL = 'https://clownfish-app-b6r47.ondigitalocean.app/scrape'
+        requestURL = os.environ['SCRAPE_URL']
         args = request.args
         word = args.get('word')
         payload = {'word':word}

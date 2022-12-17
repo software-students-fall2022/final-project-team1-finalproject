@@ -68,12 +68,13 @@ def configure_routes():
     
     @app.route('/featured')
     def featured():
-        found = db.inputs.aggregate([{"$sample" : {"size": 5}}])
+        found = db.inputs.aggregate([{"$sample" : {"size": 10}}])
         image_ids = []
         inputs = []
         for image in found:
-            image_ids.append(image["image_id"])
-            inputs.append(image["word"])
+            if (image.get('image_id', None) != None):
+                image_ids.append(image["image_id"])
+                inputs.append(image["word"])
         
         fs_images = []
         for id in image_ids:

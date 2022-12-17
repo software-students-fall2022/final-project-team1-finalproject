@@ -3,7 +3,7 @@
 
 * cd to the current directory
     ```
-    cd web-scraper
+    cd web-app
     ```
 * Create python virtual environment
     ```

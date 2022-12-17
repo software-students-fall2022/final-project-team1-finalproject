@@ -42,11 +42,12 @@ def configure_routes():
     @app.route('/keyword' , methods=['GET'])
     def generate():
         
+        requestURL = 'https://clownfish-app-b6r47.ondigitalocean.app/scrape'
         args = request.args
         word = args.get('word')
         payload = {'word':word}
         # send request to the web scraper, this will add the input word to the db and store scraped text and wordcloud
-        requests.get('http://scraper:5000/scrape', params=payload)
+        requests.get(requestURL, params=payload)
         found = db.inputs.find_one({"word":word})
         image_id= found["image_id"]
         input = found["word"]

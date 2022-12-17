@@ -46,9 +46,9 @@ def configure_routes():
         word = args.get('word')
 
         if (word == ''):
-            return render_template("home.html", input="Empty String", inputError="An empty string is not a valid query. Try a different query")
+            return render_template("home.html", inputError="An empty string is not a valid query. Try a different query")
         elif (str(word).isnumeric()):
-            return render_template("home.html", input=word, inputError="A query cannot only have numbers. Try a different query")
+            return render_template("home.html", inputError="A query cannot only have numbers. Try a different query")
 
         requestURL = os.environ['SCRAPE_URL']
         payload = {'word': word}

@@ -40,7 +40,7 @@ class WebScrape:
         
         @deprecated no longer used
         '''
-        return request.urlopen(req).read()
+        return request.urlopen(req).read().decode()
 
     @staticmethod
     def get_requests(url: str):
@@ -55,24 +55,24 @@ class WebScrape:
 class WebScrapeCleaner:
 
     @staticmethod
-    def clean_dom(dom: BeautifulSoup) -> BeautifulSoup:
-        '''Given the dom, remove all of the following tags:
+    def clean_soup(soup: BeautifulSoup) -> BeautifulSoup:
+        '''Given the soup, remove all of the following tags:
         script 
         head
         style
         footer
         '''
-        content = dom.find_all(['script', 'head', 'style', 'footer'])
+        content = soup.find_all(['script', 'head', 'style', 'footer'])
         for e in content:
             e.clear()
-        return dom
+        return soup
 
     # Note: Might want to try making this better using regex
     @staticmethod
     def clean_string(string: str) -> str:
         '''Cleans up the string by separating the words based on capitalization.
         '''
-        return re.sub(r"\B([A-Z]+)", r" \1", string) 
+        return re.sub(r"\s+", r" ", re.sub(r"([A-Z]+)", r" \1", string)).strip()
 
     @staticmethod
     def include_word(word: str) -> bool:
@@ -85,16 +85,17 @@ class WebScrapeCleaner:
             return False
         elif not word.isalnum():
             return False
-        elif word in STOPWORDS:
+        elif word.lower() in STOPWORDS:
             return False
         return True
 
     @staticmethod
-    def refactor_weird_words(words: list[str]) -> list[str]:
+    def refactor_words(words: list[str]) -> list[str]:
         '''Given an array of words, returns a new array of only words that are valid
         '''
         refactored = []
         for word in words:
+            word = re.sub(r'[^\w\s0-9]', '', word)
             if WebScrapeCleaner.include_word(word.lower()):
                 refactored.append(word.title())
         return refactored
@@ -107,7 +108,7 @@ class WebScrapeHelper:
         '''If the number of distinct words and the frequency of the most common word 
         is above a certain threshold, returns True. Otherwise, false is returned.
         '''
-        if len(words.keys()) > 2000 or max(words.values()) > 200:
+        if len(words.keys()) > 2000 and max(words.values()) > 200:
             return True
         return False
     
@@ -130,15 +131,15 @@ class WebScrapeHelper:
 
         # convert the html string into a soup
         # print("Making soup")
-        dom = WebScrape.make_soup(data)
+        soup = WebScrape.make_soup(data)
 
-        # clean up the dom by removing unnecessary text inside specific tags
-        # print("Cleaning dom")
-        dom = WebScrapeCleaner.clean_dom(dom)
+        # clean up the soup by removing unnecessary text inside specific tags
+        # print("Cleaning soup")
+        soup = WebScrapeCleaner.clean_soup(soup)
 
         # clean up the string of the remaining text of the beautiful soup
         # print("Cleaning string")
-        word_string = WebScrapeCleaner.clean_string(dom.text)
+        word_string = WebScrapeCleaner.clean_string(soup.text)
 
         # split by whitespace
         # print("Spliting by whitespace")
@@ -146,7 +147,7 @@ class WebScrapeHelper:
 
         # refactor the words that are not good (e.g., likely to be an invalid word, weird capitalizations, etc.)
         # print("Refactoring words")
-        words = WebScrapeCleaner.refactor_weird_words(words)
+        words = WebScrapeCleaner.refactor_words(words)
 
         # Generate the word freq dictionary and return it
         # print("Generating word freq dict for", len(words), "words")
@@ -184,8 +185,11 @@ class WebScrapeHelper:
         '''
         print("Number of unique words:", len(word_freq.keys()))
         print("Some examples:", list(word_freq.keys())[:10])
-        print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
-        print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        if len(word_freq.keys()) > 0:
+            print("Highest freq word:", max(word_freq.keys(), key=lambda k: word_freq[k]), max(word_freq.values()))
+            print("Longest word length:", max(word_freq.keys(), key=lambda k: len(k)))
+        else:
+            print("Word Freq dictionary:", word_freq)
 
 class WebScrapeProcedures:
 
@@ -209,7 +213,11 @@ class WebScrapeProcedures:
                 print("Error in request. Status code:", req.status_code)
                 continue
             else:
-                new_word_freq = WebScrapeHelper.make_word_freq_dict(req.text)
+                try:
+                    new_word_freq = WebScrapeHelper.make_word_freq_dict(req.text)
+                except Exception as e:
+                    print("Failed to create frequency dictionary")
+                    continue
                 WebScrapeHelper.combine_word_freq_dicts(word_freq, new_word_freq)
                 if (WebScrapeHelper.stop_condition(word_freq)):
                     break
@@ -247,5 +255,3 @@ class WebScrapeProcedures:
                     break
         WebScrapeHelper.print_word_freq_dict_details(word_freq)
         return word_freq
-
-# WebScrapeProcedures.procedure_2("facebook")

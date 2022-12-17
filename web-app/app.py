@@ -10,26 +10,31 @@ import base64
 import codecs
 
 
-load_dotenv()  # take environment variables from .env.
-
+def make_connection():
 # connect to the database
-database = None
-cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000)
-try:
-    # verify the connection works by pinging the database
-    cxn.admin.command('ping') # The ping command is cheap and does not require auth.
-    database = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the database
-    fs = GridFS(database)
-    print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
-except Exception as e:
-    # the ping command failed, so the connection is not available.
-    print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
-    print('Database connection error:', e) # debug
+    load_dotenv()  # take environment variables from .env.
+    cxn = pymongo.MongoClient(os.getenv('MONGO_URI'), serverSelectionTimeoutMS=5000,tls=True,tlsAllowInvalidCertificates=True)
+    return cxn
 
+def def_db(cxn):
+    try:
+        # verify the connection works by pinging the database
+        cxn.admin.command('ping') # The ping command is cheap and does not require auth.
+        database = cxn[os.getenv('MONGO_DBNAME')] # store a reference to the databasex
+        print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+        return database
+    except Exception as e:
+        # the ping command failed, so the connection is not available.
+        print(' *', "Failed to connect to MongoDB at", os.getenv('MONGO_URI'))
+        print('Database connection error:', e) # debug
+        return -1
 
-def configure_routes(db):
+def configure_routes():
     # set up a web app with correct routes
     app = Flask(__name__)
+    cnx = make_connection()
+    db = def_db(cnx)
+    fs = GridFS(db)
     @app.route('/')
     def home():
         return render_template("home.html")
@@ -80,7 +85,7 @@ def configure_routes(db):
         return render_template("history.html")
     return app
 
-app = configure_routes(db = database)
+app = configure_routes()
 
 # turn on debugging if in development mode
 if os.getenv('FLASK_ENV', 'development') == 'development':

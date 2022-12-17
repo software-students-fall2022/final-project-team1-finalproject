@@ -26,9 +26,17 @@ jobs:
           username: ${{ secrets.ROBERT_DOCKER_USERNAME }}
           password: ${{ secrets.ROBERT_DOCKER_PASSWORD }}
       -
-        name: Build and push
+        name: Build and push web app
         uses: docker/build-push-action@v3
         with:
           context: ./web-app
           push: true
           tags: robertchenyf/software-engineer-final-team1-wordcloud:web-latest
+          
+      -
+        name: Build and push scraper app
+        uses: docker/build-push-action@v3
+        with:
+          context: ./web-scraper
+          push: true
+          tags: robertchenyf/software-engineer-final-team1-wordcloud:scraper-latest

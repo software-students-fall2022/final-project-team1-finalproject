@@ -42,30 +42,39 @@ def configure_routes():
     @app.route('/keyword' , methods=['GET'])
     def generate():
         
-        requestURL = os.environ['SCRAPE_URL']
         args = request.args
         word = args.get('word')
-        payload = {'word':word}
+
+        if (word == ''):
+            return render_template("home.html", inputError="An empty string is not a valid query. Try a different query")
+        elif (str(word).isnumeric()):
+            return render_template("home.html", inputError="A query cannot only have numbers. Try a different query")
+
+        requestURL = os.environ['SCRAPE_URL']
+        payload = {'word': word}
         # send request to the web scraper, this will add the input word to the db and store scraped text and wordcloud
         requests.get(requestURL, params=payload)
-        found = db.inputs.find_one({"word":word})
-        image_id= found["image_id"]
-        input = found["word"]
-        image= fs.get(image_id)
-
-        base64_data = codecs.encode(image.read(), 'base64')
-        image = base64_data.decode('utf-8')
-
-        return render_template("home.html",image = image, input=input)
+        found = db.inputs.find_one({"word": word})
+        image_id = found.get("image_id", None)
+        input = found.get("word", None)
+        if (image_id != None and input != None):
+            image = fs.get(image_id)
+            base64_data = codecs.encode(image.read(), 'base64')
+            image = base64_data.decode('utf-8')
+            return render_template("home.html", image = image, input=input)
+        else:
+            return render_template("home.html", inputError=("Unable to generate a wordcloud using the following query: " + input))
+        
     
     @app.route('/featured')
     def featured():
-        found = db.inputs.aggregate([{"$sample" : {"size": 5}}])
+        found = db.inputs.aggregate([{"$sample" : {"size": 10}}])
         image_ids = []
         inputs = []
         for image in found:
-            image_ids.append(image["image_id"])
-            inputs.append(image["word"])
+            if (image.get('image_id', None) != None):
+                image_ids.append(image["image_id"])
+                inputs.append(image["word"])
         
         fs_images = []
         for id in image_ids:
@@ -76,8 +85,6 @@ def configure_routes():
             base64_data = codecs.encode(image.read(), 'base64')
             image = base64_data.decode('utf-8')
             images.append(image)
-            
-        
             
         return render_template("featured.html", images_inputs = zip(inputs,images))
     

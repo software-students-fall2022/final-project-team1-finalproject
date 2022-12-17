@@ -40,3 +40,13 @@ jobs:
           context: ./web-scraper
           push: true
           tags: robertchenyf/software-engineer-final-team1-wordcloud:scraper-latest
+          
+      - 
+        name: Deploy to DigitalOcean
+        uses: digitalocean/action-deploy@v1
+        with:
+          api_key: ${{ secrets.DIGITALOCEAN_API_KEY }}
+          image: robertchenyf/software-engineer-final-team1-wordcloud:web-latest
+          region: nyc1
+          app_name: web
+          environment: production

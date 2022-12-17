@@ -4,8 +4,6 @@
 
 ![web scraper workflow](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/web-scraper.yml/badge.svg)
 
-
-
 # Final Project
 
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.
@@ -18,3 +16,13 @@ An exercise to put to practice software development teamwork, subsystem communic
 * Alejandro Olazabal (ajo351): [Github Profile](https://github.com/aleolazabal)
 * Mark Chen (xc2097): [Github Profile](https://github.com/markizenlee)
 * Benji Luo (hjl464): [Github Profile](https://github.com/BenjiLuo) 
+
+# Deployment Link
+* TODO
+
+# Operate the Unit Tests locally
+* Look at [README.md](./web-app/tests) file for steps to test the web-app.
+* Look at [README.md](./web-scraper/tests) file for steps to test the web-scraper.
+
+# Other Links
+* Figma - TODO

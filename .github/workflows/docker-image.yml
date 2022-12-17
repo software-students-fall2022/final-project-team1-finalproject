@@ -3,8 +3,6 @@ name: Deploy to docker hub and digital ocean
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build-web-app:

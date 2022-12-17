@@ -63,7 +63,7 @@ def configure_routes():
             image = base64_data.decode('utf-8')
             return render_template("home.html", image = image, input=input)
         else:
-            return render_template("home.html", input=word, inputError=("Unable to generate a wordcloud using the following query: " + input))
+            return render_template("home.html", inputError=("Unable to generate a wordcloud using the following query: " + input))
         
     
     @app.route('/featured')

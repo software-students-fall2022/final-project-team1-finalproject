@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Deploy to docker hub and digital ocean
 
 on:
   push:

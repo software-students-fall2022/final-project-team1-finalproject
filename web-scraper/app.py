@@ -93,6 +93,9 @@ def configure_routes():
             return "no word"
         result = webscraper.WebScrapeProcedures.procedure_1(word)
 
+        if (len(result) == 0):
+            # If there are no results, then the only word that exists is itself.
+            result = {word: 10}
         
         # allWords = ",".join(list(result.keys()))
 

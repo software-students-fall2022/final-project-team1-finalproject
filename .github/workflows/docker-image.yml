@@ -43,7 +43,7 @@ jobs:
           
       - 
         name: Deploy to DigitalOcean
-        uses: digitalocean/action-deploy@v1
+        uses: digitalocean/action-doctl@v2
         with:
           api_key: ${{ secrets.DIGITALOCEAN_API_KEY }}
           image: robertchenyf/software-engineer-final-team1-wordcloud:web-latest

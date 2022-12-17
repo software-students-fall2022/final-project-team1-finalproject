@@ -18,7 +18,7 @@ An exercise to put to practice software development teamwork, subsystem communic
 * Benji Luo (hjl464): [Github Profile](https://github.com/BenjiLuo) 
 
 # Deployment Link
-* TODO
+* https://web-jpw57.ondigitalocean.app/
 
 # Operate the Unit Tests locally
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.

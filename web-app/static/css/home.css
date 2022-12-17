@@ -188,5 +188,10 @@ a {
     transform: scale(1.1);
 }
 
+.error_message {
+    color: red;
+}
 
-
+.center_text {
+    text-align: center;
+}

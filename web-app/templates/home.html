@@ -13,7 +13,7 @@
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <p>Search something to generate a word cloud!</p>
+            <p class="center_text">Search something to generate a word cloud!</p>
             <div class="navigation">
                 <a class="nav_featured" href="{{url_for('featured')}}">View Featured</a>
                 <span>=§=</span>
@@ -25,7 +25,9 @@
     <section class="right_container" id="right">
         <div class="bg_right" id="bg_right"></div>
         <div class="app_result">
-            {% if input %}
+            {% if inputError %}
+                <h2 class="error_message center_text">{{inputError}}</h2>
+            {% elif input %}
                 <h2 class="result_title" id="result_title">{{input}}</h2>
             {% else %}
                 <h2 class="result_title" id="result_title">Result</h2>

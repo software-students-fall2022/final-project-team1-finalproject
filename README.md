@@ -24,5 +24,4 @@ An exercise to put to practice software development teamwork, subsystem communic
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.
 * Look at [README.md](./web-scraper/tests) file for steps to test the web-scraper.
 
-# Other Links
-* Figma - TODO
+# Miscellaneous

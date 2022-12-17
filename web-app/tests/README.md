@@ -1,6 +1,6 @@
 # Prerequisite
 
-* Make sure that you have completed the [README.md](../README.md) steps for setting up the virtual environment.
+* Make sure that you have completed the [README.md](../) steps for setting up the virtual environment.
 
 # Get Code Coverage information
 

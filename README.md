@@ -60,5 +60,3 @@ DigitalOcean deployment:
 # Operate the Unit Tests locally
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.
 * Look at [README.md](./web-scraper/tests) file for steps to test the web-scraper.
-
-# Miscellaneous

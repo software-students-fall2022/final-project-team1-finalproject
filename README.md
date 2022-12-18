@@ -2,6 +2,7 @@
 
 ![web scraper workflow](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/web-scraper.yml/badge.svg)
 
+![deploy to Dockerhub and DigitalOcean](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/docker-image.yml/badge.svg)
 # Final Project
 
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.
@@ -62,3 +63,5 @@ DigitalOcean deployment:
 * Look at [README.md](./web-scraper/tests) file for steps to test the web-scraper.
 
 # Miscellaneous
+Link to figma: https://www.figma.com/file/r3ZeAmaOnoKWEQIJ6U7wJP/WordCloud-Scraper?node-id=0%3A1&t=rErnsd2vC5nJtcFk-0
+

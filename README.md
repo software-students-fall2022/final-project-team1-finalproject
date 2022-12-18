@@ -11,9 +11,9 @@ A software that takes a word or phrase from user and generate a word cloud image
 
 The software is composed of 3 sub-systems: a database, a web app and a web scraper app. 
 
-* web app: 
-* web scraper app: 
-* database: 
+* web app: Get the word from user and send a request to the web scrapper with the word. After the request returns, get the image from the database and display it to the user. The web app also has a featured word cloud page that displays past generated word cloud images.
+* web scraper app: Recieve request with the input word from the web-app, perform a google search with the word, scrape the top websites from the google search, use the scraped result to generate a word cloud image, store the image to the database and return the request from the web-app. 
+* database: Stores the user input word, the word cloud image, and the time that the image is generated. 
 
 # Teammates
 
@@ -26,7 +26,7 @@ The software is composed of 3 sub-systems: a database, a web app and a web scrap
 
 # Run the App
 1. Pull this repository to your machine.
-2. Create and fill 2 .env file based on the template of the [example-env](https://github.com/software-students-fall2022/final-project-team1-finalproject/blob/main/example-env) file. Put each of them inside the sub directory of the web-app and web-scrapper. Make sure when you fill the .env file the mongo connection string is inside double quotes, so the entry should looks like 
+2. Create and fill 2 .env file based on the template of the [example-env](https://github.com/software-students-fall2022/final-project-team1-finalproject/blob/main/example-env) file. Put each of them inside the sub directory of the web-app and web-scrapper. Make sure when you fill the .env file with the mongo connection string inside the double quotes, so the entry should looks like 
 ```
 MONGO_URI="mongodb+srv://cluster0.example.mongodb.net"
 ```

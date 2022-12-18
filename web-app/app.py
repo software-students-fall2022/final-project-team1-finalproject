@@ -88,9 +88,11 @@ def configure_routes():
             
         return render_template("featured.html", images_inputs = zip(inputs,images))
     
-    @app.route('/history')
-    def history():
-        return render_template("history.html")
+    # History page
+    # @app.route('/history')
+    # def history():
+    #     return render_template("history.html")
+    
     return app
 
 app = configure_routes()

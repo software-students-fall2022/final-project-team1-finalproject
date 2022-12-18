@@ -2,6 +2,7 @@
 
 ![web scraper workflow](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/web-scraper.yml/badge.svg)
 
+![deploy to Dockerhub and DigitalOcean](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/docker-image.yml/badge.svg)
 # Final Project
 
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.

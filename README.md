@@ -25,7 +25,24 @@ The software is composed of 3 sub-systems: a database, a web app and a web scrap
 * Benji Luo (hjl464): [Github Profile](https://github.com/BenjiLuo) 
 
 # Run the App
+1. Pull this repository to your machine.
+2. Create and fill 2 .env file based on the template of the [example-env](https://github.com/software-students-fall2022/final-project-team1-finalproject/blob/main/example-env) file. Put each of them inside the sub directory of the web-app and web-scrapper. Make sure when you fill the .env file the mongo connection string is inside double quotes, so the entry should looks like 
+```
+MONGO_URI="mongodb+srv://cluster0.example.mongodb.net"
+```
+3. Download Docker Desktop.[link](https://www.docker.com/)
+4. Inside the directory of the project, run
+```
+docker-compose up
+```
 
+At this point the scraper app and the web app should be running. <br>
+
+To access the home page of the web app, type in this link in your browser. http://localhost:3000/ <br>
+
+Type the word in the search bar and click search, a generated word cloud image will be displayed on the right side of the web page after the web scraping process is finished. Notice this process may takes around 10 seconds. <br>
+
+The feature word cloud page of the web app might be empty because the database is empty without any previous generated word cloud images. <br>
 
 # Deployment Link
 

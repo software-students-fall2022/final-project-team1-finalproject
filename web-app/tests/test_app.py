@@ -13,6 +13,11 @@ class TestApp:
         db = App.def_db(cxn)
         assert (db != -1)
         print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+    
+    def test_db_exceptions(self):
+        cxn = 0
+        db = App.def_db(cxn)
+        assert (db != -1)
 
     def test_base_route(self):
         app = App.configure_routes()

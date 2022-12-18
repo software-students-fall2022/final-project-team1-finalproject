@@ -35,6 +35,7 @@ def configure_routes():
     cnx = make_connection()
     db = def_db(cnx)
     fs = GridFS(db)
+    
     @app.route('/')
     def home():
         return render_template("home.html")
@@ -87,10 +88,6 @@ def configure_routes():
             images.append(image)
             
         return render_template("featured.html", images_inputs = zip(inputs,images))
-    
-    @app.route('/history')
-    def history():
-        return render_template("history.html")
     return app
 
 app = configure_routes()

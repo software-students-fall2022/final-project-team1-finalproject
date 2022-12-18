@@ -33,3 +33,17 @@ class TestApp:
         url = '/test'
         response = client.get(url)
         assert response.status_code == 404
+
+    def test_keyword_route(self):
+        app = configure_routes()
+        client = app.test_client()
+        url = "/keyword"
+        response = client.get(url)
+        assert response.status_code == 200
+
+    def test_featured_route(self):
+        app = configure_routes()
+        client = app.test_client()
+        url = "/featured"
+        response = client.get(url)
+        assert response.status_code == 200

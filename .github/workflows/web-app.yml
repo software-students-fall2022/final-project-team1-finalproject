@@ -37,5 +37,4 @@ jobs:
       - name: execute unit tests
         enviroment: 
           SCRAPE_URL=http://scraper:5000/scrape
-        
         run: pytest --cov

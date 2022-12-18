@@ -7,8 +7,13 @@
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.
 
 # Project Description
-An app that
-The app is 
+A software that takes a word or phrase from user and generate a word cloud image based on words related to the word from user. 
+
+The software is composed of 3 sub-systems: a database, a web app and a web scraper app. 
+
+* web app: 
+* web scraper app: 
+* database: 
 
 # Teammates
 
@@ -29,11 +34,11 @@ Dockerhub deployment:
 
 The web app and scraper are in the same dockerhub repository. <br>
 The web app is tagged "web-latest". The scraper app is tagged "scraper-latest". <br>
-Instuction on how to pull and run these images are inside the dockerhub repository readme. 
+Instuctions on how to pull and run these images are inside the dockerhub repository readme. 
 
 DigitalOcean deployment:
 * Link to the web app(for human user): https://web-jpw57.ondigitalocean.app/
-* Link to the scraper app(for web app): https://king-prawn-app-svy8t.ondigitalocean.app/
+* Link to the scraper app(for our web app): https://king-prawn-app-svy8t.ondigitalocean.app/
 
 # Operate the Unit Tests locally
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.

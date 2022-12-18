@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 import pytest
-import pytest_flask
 import pymongo
 import mongomock
 import os
@@ -21,14 +20,14 @@ class TestApp:
         assert (db != -1)
         print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
     
-    def test_base_route():
+    def test_base_route(self):
         app = configure_routes()
         client = app.test_client()
         url = '/'
         response = client.get(url)
         assert response.status_code == 200
     
-    def test_wrong_route():
+    def test_wrong_route(self):
         app = configure_routes()
         client = app.test_client()
         url = '/test'

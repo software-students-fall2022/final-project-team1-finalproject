@@ -35,7 +35,7 @@ jobs:
         run: |
           echo '${{ secrets.ENV_FILE }}' > .env
       - name: execute unit tests
-        enviroment: 
+        environment: 
           SCRAPE_URL=http://scraper:5000/scrape
         run: ｜
           pytest --cov

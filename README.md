@@ -6,8 +6,9 @@
 
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.
 
-# Description
-
+# Project Description
+An app that
+The app is 
 
 # Teammates
 
@@ -22,7 +23,17 @@ An exercise to put to practice software development teamwork, subsystem communic
 
 
 # Deployment Link
-* https://web-jpw57.ondigitalocean.app/
+
+Dockerhub deployment:
+* Link to Dockerhub repository: https://hub.docker.com/r/robertchenyf/software-engineer-final-team1-wordcloud
+
+The web app and scraper are in the same dockerhub repository. <br>
+The web app is tagged "web-latest". The scraper app is tagged "scraper-latest". <br>
+Instuction on how to pull and run these images are inside the dockerhub repository readme. 
+
+DigitalOcean deployment:
+* Link to the web app(for human user): https://web-jpw57.ondigitalocean.app/
+* Link to the scraper app(for web app): https://king-prawn-app-svy8t.ondigitalocean.app/
 
 # Operate the Unit Tests locally
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.

@@ -1,5 +1,3 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9537032&assignment_repo_type=AssignmentRepo)
-
 ![web app workflow](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/web-app.yml/badge.svg)
 
 ![web scraper workflow](https://github.com/software-students-fall2022/final-project-team1-finalproject/actions/workflows/web-scraper.yml/badge.svg)
@@ -7,6 +5,15 @@
 # Final Project
 
 An exercise to put to practice software development teamwork, subsystem communication, containers, deployment, and CI/CD pipelines. See [instructions](./instructions.md) for details.
+
+# Project Description
+A software that takes a word or phrase from user and generate a word cloud image based on words related to the word from user. 
+
+The software is composed of 3 sub-systems: a database, a web app and a web scraper app. 
+
+* web app: 
+* web scraper app: 
+* database: 
 
 # Teammates
 
@@ -17,8 +24,21 @@ An exercise to put to practice software development teamwork, subsystem communic
 * Mark Chen (xc2097): [Github Profile](https://github.com/markizenlee)
 * Benji Luo (hjl464): [Github Profile](https://github.com/BenjiLuo) 
 
+# Run the App
+
+
 # Deployment Link
-* https://web-jpw57.ondigitalocean.app/
+
+Dockerhub deployment:
+* Link to Dockerhub repository: https://hub.docker.com/r/robertchenyf/software-engineer-final-team1-wordcloud
+
+The web app and scraper are in the same dockerhub repository. <br>
+The web app is tagged "web-latest". The scraper app is tagged "scraper-latest". <br>
+Instuctions on how to pull and run these images are inside the dockerhub repository readme. 
+
+DigitalOcean deployment:
+* Link to the web app(for human user): https://web-jpw57.ondigitalocean.app/
+* Link to the scraper app(for our web app): https://king-prawn-app-svy8t.ondigitalocean.app/
 
 # Operate the Unit Tests locally
 * Look at [README.md](./web-app/tests) file for steps to test the web-app.

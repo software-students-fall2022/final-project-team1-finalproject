@@ -31,5 +31,11 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pip install pytest-flask
+      - name: 'Create env file'
+        run: |
+          echo '${{ secrets.ENV_FILE }}' > .env
       - name: execute unit tests
-        run: pytest --cov
+        enviroment: 
+          SCRAPE_URL=http://scraper:5000/scrape
+        run: ｜
+          pytest --cov

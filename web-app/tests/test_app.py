@@ -29,7 +29,7 @@ class TestApp:
     def test_keyword_route(self):
         app = App.configure_routes()
         client = app.test_client()
-        url = "/keyword"
+        url = "/keyword?word=test"
         response = client.get(url)
         assert response.status_code == 200
 

@@ -6,7 +6,7 @@
     <div class="featured">
         <h1 class="featured_title">Featured Word Clouds</h1>
         <hr class="divide">
-        <p>Click through to view</p>
+        <p>Swipe to view</p>
         <div class="swiper-container">
             <div class="swiper-wrapper" id="featured_images">
                 {% for input,image in images_inputs %}
@@ -30,8 +30,15 @@
             <!-- pagination -->
             <div class="swiper-pagination"></div>
         </div>
-        <div class="nav_back">
-            <a class="nav_home" href="{{url_for('home')}}">Go back</a>
+
+        <div class="feature_button_container">
+            <div class="nav_back">
+                <a class="nav_home" href="{{url_for('home')}}">Go back</a>
+            </div>
+            <span class="feature_button_separator">=§=</span>
+            <div class="refresh">
+                <a class="refresh_button" href="{{url_for('featured')}}">Refresh</a>
+            </div>
         </div>
     </div>
 

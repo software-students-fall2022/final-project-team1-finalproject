@@ -10,8 +10,14 @@
     python -m venv .venv
     ```
 * Activate virtual environment on bash
+    * On Windows
     ```
     source .venv/Scripts/activate
+    ```
+
+    * On Mac
+    ```
+    source .venv/bin/activate
     ```
 * Download dependencies
     ```

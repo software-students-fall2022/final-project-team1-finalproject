@@ -82,17 +82,40 @@ hr:after {
     transition: 0.5s;
 }
 
-.nav_back {
+.feature_button_container {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.feature_button_separator {
+    color: var(--color-text-dark);
+}
+
+.nav_back {
     color: white;
     padding: 1rem 1.5rem;
     transition: 0.25s ease;
     border-radius: 3px;
     background: linear-gradient(to right, #434343 0%, black 100%);
+    border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.nav_back:hover {
+.refresh {
+    color: black;
+    padding: 1rem 1.5rem;
+    transition: 0.25s ease;
+    border-radius: 3px;
+    background: linear-gradient(to right, #b1b1b1 0%, #eae9e9 100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid gray;
+}
+
+.nav_back:hover,
+.refresh:hover {
     transform: scale(1.1);
     cursor: pointer;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

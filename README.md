@@ -46,7 +46,7 @@ docker-compose up
 
 At this point the scraper app and the web app should be running. <br>
 
-To access the home page of the web app, type in this link in your browser. http://localhost:5000/ <br>
+To access the home page of the web app, type in this link in your browser. http://localhost:3000/ <br>
 
 Type the word in the search bar and click search, a generated word cloud image will be displayed on the right side of the web page after the web scraping process is finished. Notice this process may take around 10 seconds. <br>
 

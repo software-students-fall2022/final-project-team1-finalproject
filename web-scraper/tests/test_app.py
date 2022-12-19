@@ -24,6 +24,11 @@ class TestAlejandroApp:
         db = AlejandroApp.def_db(cxn)
         assert (db != -1)
         print(' *', 'Connected to MongoDB!') # if we get here, the connection worked!
+    
+    def test_db_exceptions(self):
+        cxn = 0
+        db = AlejandroApp.def_db(cxn)
+        assert (db == -1)
 
     def test_dictionary_convert(self):
         input = {"hello":1, "this":2, "is":3,"a":1, "test":4}

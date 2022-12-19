@@ -1,0 +1,48 @@
+/**
+    Global styles
+    Global variables
+    base.html styles
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Playfair Display SC', 'serif';
+}
+
+:root {
+    /* colors */
+    --color-background: #ededed;
+    /* --color-background: #cecece; */
+    --color-detail-bg: #000000b3;
+    --color-detail-border: #3a3a3a;
+    --color-text: #ffffff;
+    --color-head-color: #444444;
+    --color-p: #393939;
+    --color-text-dark: #000000;
+
+    /* font sizes */
+    --large-1: 62px;
+    --large-2: 50px;
+    --medium-1: 24px;
+    --medium-2: 22px;
+    --small-1: 16px;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    /* border: 2px solid green; */
+}

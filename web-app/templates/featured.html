@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<section class="featured_container">
+    <div class="featured">
+        <h1 class="featured_title">Featured Word Clouds</h1>
+        <hr class="divide">
+        <p>Swipe to view</p>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="featured_images">
+                {% for input,image in images_inputs %}
+                <div class="swiper-slide cloud-img">   
+                    <span>{{input}}</span>
+                    <img src="data:image/png;base64, {{image}}" alt="image">
+                </div>
+                {% endfor %}
+                <!-- Test code below -->
+                <!-- <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud1.jpg')}}" alt="image">
+                </div>
+                <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud2.jpg')}}" alt="image">
+                </div>
+                <div class="swiper-slide cloud-img">
+                    <img src="{{url_for('static', filename='images/wordcloud1.jpg')}}" alt="image">
+                </div> -->
+            </div>
+        
+            <!-- pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="feature_button_container">
+            <div class="nav_back">
+                <a class="nav_home" href="{{url_for('home')}}">Go back</a>
+            </div>
+            <span class="feature_button_separator">=§=</span>
+            <div class="refresh">
+                <a class="refresh_button" href="{{url_for('featured')}}">Refresh</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="{{url_for('static', filename='js/swiper.js')}}"></script>
+
+{% endblock %}
